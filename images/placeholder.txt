@@ -1,0 +1,21 @@
+# Images Directory
+
+This directory should contain:
+
+## Profile Image
+- SacchinSundar.jpg (400x400px recommended, professional headshot)
+
+## Research Project Images
+- neural_bathymetry.jpg (project thumbnail)
+- neural_bathymetry.mp4 (project video demo)
+- underwater_slam_before.png (before image for hover effect)
+- underwater_slam_after.png (after image for hover effect)
+- dhaz3r.jpg (project thumbnail)
+- dhaz3r.mp4 (project video demo)
+
+## General Guidelines
+- Use descriptive filenames
+- Optimize images for web (WebP format recommended)
+- Keep videos under 10MB for good loading performance
+- Use square aspect ratio for project thumbnails (160x160px)
+- Use 400x400px for profile image

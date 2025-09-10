@@ -1,0 +1,15 @@
+# Data Directory
+
+This directory should contain:
+
+## CV and Documents
+- SacchinSundar-CV.pdf (your academic CV)
+
+## Publication Data (if needed)
+- Any .bib files for publications
+- Other academic documents
+
+## Guidelines
+- Keep PDFs optimized for web viewing
+- Use descriptive filenames
+- Ensure files are accessible and not too large
