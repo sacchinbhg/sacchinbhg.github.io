@@ -68,7 +68,7 @@ sacchinbhg.github.io/
 3. Changes will automatically deploy to your website
 
 ## 🌐 Custom Domain (Optional)
-If you want to use a custom domain like `sacchinsundar.info`:
+If you want to use a custom domain in the future:
 
 1. Update the `CNAME` file with your domain
 2. Configure DNS settings with your domain provider
