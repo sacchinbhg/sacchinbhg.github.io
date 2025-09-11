@@ -21,163 +21,113 @@
   </head>
 
   <body>
-    <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+    <table style="width:100%;max-width:1000px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
       <tr style="padding:0px">
         <td style="padding:0px">
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr style="padding:0px">
-              <td style="padding:2.5%;width:63%;vertical-align:middle">
-                <p class="name" style="text-align: center;">
+              <!-- Left: SIREN Art Slideshow -->
+              <td style="padding:2.5%;width:25%;vertical-align:middle">
+                <div style="position: relative; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f 100%); border-radius: 12px; padding: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                  <h3 style="text-align: center; margin: 0 0 8px 0; color: #1e3a8a; font-size: 16px;">Research Art</h3>
+                  <p style="text-align: center; margin: 0 0 15px 0; font-size: 12px; color: #666; font-style: italic; line-height: 1.4;">
+                    My research has often produced weird art as a wrong byproduct. While this was annoying during the research process, it now looks cool enough to show on my website!
+                  </p>
+                  <div style="position: relative; overflow: hidden; border-radius: 8px;">
+                    <div id="siren-slideshow" style="display: flex; transition: transform 0.5s ease;">
+                      <img src="siren_art/siren_1.png" alt="SIREN Art 1" style="width: 100%; height: 200px; object-fit: cover; flex-shrink: 0;">
+                      <img src="siren_art/siren_2.png" alt="SIREN Art 2" style="width: 100%; height: 200px; object-fit: cover; flex-shrink: 0;">
+                      <img src="siren_art/siren_3.png" alt="SIREN Art 3" style="width: 100%; height: 200px; object-fit: cover; flex-shrink: 0;">
+                      <img src="siren_art/siren_4.png" alt="SIREN Art 4" style="width: 100%; height: 200px; object-fit: cover; flex-shrink: 0;">
+                      <img src="siren_art/siren_5.png" alt="SIREN Art 5" style="width: 100%; height: 200px; object-fit: cover; flex-shrink: 0;">
+                      <img src="siren_art/siren_6.png" alt="SIREN Art 6" style="width: 100%; height: 200px; object-fit: cover; flex-shrink: 0;">
+        </div>
+                    <button onclick="previousSlide()" style="position: absolute; left: 5px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 16px;">‹</button>
+                    <button onclick="nextSlide()" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 16px;">›</button>
+					</div>
+                  <div style="text-align: center; margin-top: 10px;">
+                    <span id="slide-counter" style="font-size: 12px; color: #666;">1 / 6</span>
+        </div>
+        </div>
+      </td>
+              
+              <!-- Center: Description -->
+              <td style="padding:2.5%;width:50%;vertical-align:middle">
+                <p class="name" style="text-align: center; margin-bottom: 20px;">
                   Sacchin Sundar
                 </p>
-                <p>
-		I'm a Master's student in Robotics at the <a href="https://robotics.umich.edu/">University of Michigan</a>, where I focus on neural scene representations that bridge perception and action, particularly in underwater sensing and sonar rendering.
-		My research interests include dense correspondence learning, differentiable sonar rendering, and underwater computer vision. I'm currently working on projects involving side-scan sonar, SIREN networks, and underwater SLAM with dense correspondence using MASt3R.
-		I serve as a Graduate Student Instructor for ROB 330 (SLAM & Navigation) and am passionate about developing robust perception systems for underwater robotics applications.
+                <p style="text-align: justify; line-height: 1.6; margin-bottom: 15px;">
+                  I am a Master's student in Robotics at the University of Michigan, working in the <a href="https://fieldrobotics.engin.umich.edu/">Field Robotics Group (FRoG)</a> under the mentorship of <a href="https://robotics.umich.edu/people/faculty/katie-skinner/">Prof. Katie Skinner</a>. My research centers on developing neural scene representations that serve as substrates for action, with the goal of advancing perception systems that tightly couple sensing with control and planning.
                 </p>
-                <p style="text-align:center">
+                <p style="text-align: justify; line-height: 1.6; margin-bottom: 15px;">
+                  While my current projects emphasize underwater robotics-differentiable sonar rendering, neural implicit 3D reconstruction, and dense correspondence learning for underwater SLAM (e.g., MASt3R)-my broader interest lies in building physics-informed representations that generalize across robotic platforms.
+                </p>
+                <p style="text-align: justify; line-height: 1.6; margin-bottom: 20px;">
+                  I serve as a Graduate Student Instructor for ROB 330 (SLAM & Navigation) and am passionate about teaching and outreach opportunities.
+                </p>
+                <p style="text-align:center; margin-top: 20px;">
+                  <a href="index.html">Home</a> &nbsp;/&nbsp;
+                  <a href="blog.html">Blog</a> &nbsp;/&nbsp;
                   <a href="mailto:sacchin@umich.edu">Email</a> &nbsp;/&nbsp;
                   <a href="data/SacchinSundar-CV.pdf">CV</a> &nbsp;/&nbsp;
                   <a href="https://scholar.google.com/citations?user=YOUR_SCHOLAR_ID">Scholar</a> &nbsp;/&nbsp;
                   <a href="https://www.linkedin.com/in/sacchin-ganesh-sundar/">LinkedIn</a> &nbsp;/&nbsp;
                   <a href="https://github.com/sacchinbhg">Github</a>
-                </p>
+        </p>
+      </td>
+              
+              <!-- Right: Profile Photo -->
+              <td style="padding:2.5%;width:25%;vertical-align:middle">
+                <a href="images/SacchinSundar.mp4">
+                  <video src="images/SacchinSundar.mp4" autoplay muted loop playsinline style="width:100%;max-width:100%;object-fit: cover; border-radius: 50%;"></video>
+                </a>
               </td>
-              <td style="padding:2.5%;width:37%;max-width:37%">
-                <a href="images/SacchinSundar.jpg"><img style="width:100%;max-width:100%;object-fit: cover; border-radius: 50%;" alt="Sacchin Sundar profile photo" src="images/SacchinSundar.jpg" class="hoverZoomLink"></a>
-              </td>
-            </tr>
+    </tr>
           </tbody></table>
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
               <tr>
               <td style="padding:16px;width:100%;vertical-align:middle">
                 <h2>Research</h2>
                 <p>
-                  I'm interested in neural scene representations, underwater computer vision, and sonar rendering. My research focuses on developing robust perception systems for underwater robotics, with particular emphasis on dense correspondence learning, differentiable sonar rendering, and neural scene reconstruction. Some projects are <span class="highlight">highlighted</span>.
-                </p>
-              </td>
-            </tr>
+                  I'm interested in neural scene representations, 3D vision, and differentiable rendering. My research focuses on developing robust perception systems for understanding physical world to enable robot actions. Some projects are <span class="highlight">highlighted</span>.
+        </p>
+      </td>
+    </tr>
           </tbody></table>
           <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
-
-    <tr onmouseout="neural_bathymetry_stop()" onmouseover="neural_bathymetry_start()"  bgcolor="#ffffd0">
+    <tr onmouseout="bags_stop()" onmouseover="bags_start()" bgcolor="#ffffd0">
       <td style="padding:16px;width:20%;vertical-align:middle">
         <div class="one">
-          <div class="two" id='neural_bathymetry_image'><video  width=100% height=100% muted autoplay loop>
-          <source src="images/neural_bathymetry.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-
-          </video></div>
-          <img src='images/neural_bathymetry.jpg' width="160">
+          <div class="two" id='bags_image'>
+            <img src='images/truck.gif' width="160" style="border-radius: 8px;">
+          </div>
+          <img src='images/truck.gif' width="160" style="border-radius: 8px;">
         </div>
         <script type="text/javascript">
-          function neural_bathymetry_start() {
-            document.getElementById('neural_bathymetry_image').style.opacity = "1";
+          function bags_start() {
+            document.getElementById('bags_image').style.opacity = "1";
           }
 
-          function neural_bathymetry_stop() {
-            document.getElementById('neural_bathymetry_image').style.opacity = "0";
+          function bags_stop() {
+            document.getElementById('bags_image').style.opacity = "0";
           }
-          neural_bathymetry_stop()
+          bags_stop()
         </script>
       </td>
       <td style="padding:8px;width:80%;vertical-align:middle">
-        <a href="https://sacchinbhg.github.io/neural-bathymetry">
-          <span class="papertitle">Neural Bathymetry: Differentiable Sonar Rendering for Underwater Scene Reconstruction</span>
+        <a href="images/Deep_Rob_Final_Report.pdf">
+          <span class="papertitle">BAGS: Bundle-Adjusting Gaussian Splatting for Object-Centric 3D Reconstruction</span>
         </a>
         <br>
-        <strong>Sacchin Sundar</strong>,
-        <a href="https://example.com">Advisor Name</a>
+        <strong>Sacchin Sundar</strong>
         <br>
-        <em>Under Review</em>, 2024
+        <em>Course Project</em>, 2024
         <br>
-        <a href="https://sacchinbhg.github.io/neural-bathymetry">project page</a>
-        /
-        <a href="https://arxiv.org/abs/placeholder">arXiv</a>
+        <a href="images/Deep_Rob_Final_Report.pdf">PDF Report</a>
         <p></p>
         <p>
-		We present a novel approach to underwater scene reconstruction using differentiable sonar rendering with SIREN networks, enabling accurate bathymetry estimation from side-scan sonar data.
-        </p>
-      </td>
-    </tr>
-
-    <tr onmouseout="underwater_slam_stop()" onmouseover="underwater_slam_start()">
-      <td style="padding:16px;width:20%;vertical-align:middle">
-        <div class="one">
-          <div class="two" id='underwater_slam_image'>
-					  <img src='images/underwater_slam_after.png' width=100%>
-					</div>
-          <img src='images/underwater_slam_before.png' width=100%>
-        </div>
-        <script type="text/javascript">
-          function underwater_slam_start() {
-            document.getElementById('underwater_slam_image').style.opacity = "1";
-          }
-
-          function underwater_slam_stop() {
-            document.getElementById('underwater_slam_image').style.opacity = "0";
-          }
-          underwater_slam_stop()
-        </script>
-      </td>
-      <td style="padding:8px;width:80%;vertical-align:middle">
-        <a href="https://sacchinbhg.github.io/underwater-slam">
-			<span class="papertitle">Underwater SLAM with Dense Correspondence using MASt3R</span>
-        </a>
-        <br>
-				<strong>Sacchin Sundar</strong>,
-				<a href="https://example.com">Collaborator Name</a>
-				<br>
-        <em>In Preparation</em>, 2024
-        <br>
-        <a href="https://sacchinbhg.github.io/underwater-slam">project page</a>
-        /
-        <a href="https://github.com/sacchinbhg/underwater-slam">code</a>
-        <p></p>
-        <p>
-				We adapt MASt3R for underwater environments to enable robust SLAM with dense correspondence learning, improving navigation accuracy in challenging underwater conditions.
-        </p>
-      </td>
-    </tr>
-
-
-    <tr onmouseout="dhaz3r_stop()" onmouseover="dhaz3r_start()" bgcolor="#ffffd0">
-      <td style="padding:16px;width:20%;vertical-align:middle">
-        <div class="one">
-          <div class="two" id='dhaz3r_image'><video  width=100% height=100% muted autoplay loop>
-          <source src="images/dhaz3r.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-          </video></div>
-          <img src='images/dhaz3r.jpg' width="160">
-        </div>
-        <script type="text/javascript">
-          function dhaz3r_start() {
-            document.getElementById('dhaz3r_image').style.opacity = "1";
-          }
-
-          function dhaz3r_stop() {
-            document.getElementById('dhaz3r_image').style.opacity = "0";
-          }
-          dhaz3r_stop()
-        </script>
-      </td>
-      <td style="padding:8px;width:80%;vertical-align:middle">
-        <a href="https://sacchinbhg.github.io/dhaz3r">
-			<span class="papertitle">D-HAZ3R: Underwater Dehazing with Vision Transformers</span>
-        </a>
-        <br>
-				<strong>Sacchin Sundar</strong>,
-				<a href="https://example.com">Collaborator Name</a>
-        <br>
-        <em>In Preparation</em>, 2024
-        <br>
-        <a href="https://sacchinbhg.github.io/dhaz3r">project page</a>
-        /
-        <a href="https://github.com/sacchinbhg/dhaz3r">code</a>
-        <p></p>
-        <p>
-				We propose D-HAZ3R, a novel approach for underwater image dehazing using Vision Transformers, achieving state-of-the-art performance on underwater imaging benchmarks.
+          We present BAGS (Bundle-Adjusting Gaussian Splatting), an extension of the Gaussian Object framework for object-centric 3D reconstruction under uncertain camera poses. Unlike standard Gaussian Splatting, which depends on accurate Structure-from-Motion outputs, our method introduces learnable pose deltas jointly optimized with Gaussian parameters through a staggered training schedule. This bundle-adjusting approach enables robust geometry recovery and pose refinement even with noisy initialization. Experiments on the MipNeRF360 dataset demonstrate that BAGS maintains high perceptual quality in novel view synthesis while recovering accurate poses, extending Gaussian Splatting to real-time robotics and low-fidelity settings where reliable camera poses are unavailable.
         </p>
       </td>
     </tr>
@@ -202,6 +152,10 @@
 								 </div>
               </td>
               <td style="padding:8px;width:80%;vertical-align:middle">
+                <a href="blog.html">View all blog posts →</a>
+                <br><br>
+                <strong>Recent Posts:</strong>
+                <br>
                 <a href="https://sacchinbhg.github.io/blog/underwater-vision-challenges">Underwater Computer Vision: Challenges and Opportunities</a>
                 <br>
                 <a href="https://sacchinbhg.github.io/blog/neural-scene-representations">Neural Scene Representations for Robotics</a>
@@ -212,8 +166,8 @@
               </td>
             </tr>
             </tr>
-
-
+						
+           
             <tr>
               <td align="center" style="padding:16px;width:20%;vertical-align:middle">
 						     <div class="colored-box" style="background-color: #edd892;">
@@ -221,13 +175,14 @@
 								 </div>
               </td>
               <td style="padding:8px;width:80%;vertical-align:center">
-                <a href="https://robotics.umich.edu/academics/courses/rob-330/">Graduate Student Instructor, ROB 330 (SLAM & Navigation), Fall 2024</a>
+                 <a href="https://robotics.umich.edu/academics/courses/rob-330/">Graduate Student Instructor, ROB 330 (SLAM & Navigation), Fall 2024</a>
                 <br>
-                <a href="https://robotics.umich.edu/academics/courses/rob-330/">Graduate Student Instructor, ROB 330 (SLAM & Navigation), Winter 2024</a>
+                 <a href="https://robotics.umich.edu/academics/courses/rob-330/">Graduate Student Instructor, ROB 330 (SLAM & Navigation), Winter 2024</a>
                 <br>
-                <a href="https://github.com/sacchinbhg/rob330-resources">Lab Development and Teaching Resources</a>
+                 <a href="https://github.com/sacchinbhg/rob330-resources">Lab Development and Teaching Resources</a>
               </td>
             </tr>
+
             
           </tbody></table>
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
@@ -244,5 +199,35 @@
         </td>
       </tr>
     </tbody></table>
+
+    <script>
+      let currentSlide = 0;
+      const totalSlides = 6;
+      const slideshow = document.getElementById('siren-slideshow');
+      const counter = document.getElementById('slide-counter');
+
+      function showSlide(n) {
+        currentSlide = n;
+        if (currentSlide >= totalSlides) currentSlide = 0;
+        if (currentSlide < 0) currentSlide = totalSlides - 1;
+        
+        slideshow.style.transform = `translateX(-${currentSlide * 100}%)`;
+        counter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+      }
+
+      function nextSlide() {
+        showSlide(currentSlide + 1);
+      }
+
+      function previousSlide() {
+        showSlide(currentSlide - 1);
+      }
+
+      // Auto-advance slideshow every 4 seconds
+      setInterval(nextSlide, 4000);
+
+      // Initialize
+      showSlide(0);
+    </script>
   </body>
 </html>

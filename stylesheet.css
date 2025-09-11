@@ -143,3 +143,26 @@ span.highlight {
     display: inline-block;
     border-radius: 10px;
 }
+
+/* Blog page styles */
+h3 {
+    margin: 0;
+    font-family: 'Inter', 'Lato', Verdana, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1e3a8a;
+}
+
+h3 a:hover {
+    color: #3b82f6;
+}
+
+.blog-post {
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.blog-post:last-child {
+    border-bottom: none;
+}
