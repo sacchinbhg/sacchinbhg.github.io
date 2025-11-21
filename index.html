@@ -29,7 +29,7 @@
               <!-- Left: SIREN Art Slideshow -->
               <td style="padding:2.5%;width:25%;vertical-align:middle">
                 <div style="position: relative; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f 100%); border-radius: 12px; padding: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                  <h3 style="text-align: center; margin: 0 0 8px 0; color: #1e3a8a; font-size: 16px;">Research Art</h3>
+                  <h3 style="text-align: center; margin: 0 0 8px 0; color: #1e3a8a; font-size: 16px;">Random Art¿</h3>
                   <p style="text-align: center; margin: 0 0 15px 0; font-size: 12px; color: #666; font-style: italic; line-height: 1.4;">
                     My research has often produced weird art as a wrong byproduct. While this was annoying during the research process, it now looks cool enough to show on my website!
                   </p>
@@ -87,9 +87,9 @@
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
               <tr>
               <td style="padding:16px;width:100%;vertical-align:middle">
-                <h2>Research</h2>
+                <h2>Selected Projects</h2>
                 <p>
-                  I'm interested in neural scene representations, 3D vision, and differentiable rendering. My research focuses on developing robust perception systems for understanding physical world to enable robot actions. Some projects are <span class="highlight">highlighted</span>.
+                  A collection of projects I've worked on, ranging from reinforcement learning to neural scene representations.
         </p>
       </td>
     </tr>
@@ -127,9 +127,72 @@
         <br>
         <a href="images/Deep_Rob_Final_Report.pdf">PDF Report</a>
         <p></p>
-        <p>
-          We present BAGS (Bundle-Adjusting Gaussian Splatting), an extension of the Gaussian Object framework for object-centric 3D reconstruction under uncertain camera poses. Unlike standard Gaussian Splatting, which depends on accurate Structure-from-Motion outputs, our method introduces learnable pose deltas jointly optimized with Gaussian parameters through a staggered training schedule. This bundle-adjusting approach enables robust geometry recovery and pose refinement even with noisy initialization. Experiments on the MipNeRF360 dataset demonstrate that BAGS maintains high perceptual quality in novel view synthesis while recovering accurate poses, extending Gaussian Splatting to real-time robotics and low-fidelity settings where reliable camera poses are unavailable.
-        </p>
+      </td>
+    </tr>
+
+    <tr onmouseout="pokemon_stop()" onmouseover="pokemon_start()" bgcolor="#ffffd0">
+      <td style="padding:16px;width:20%;vertical-align:middle">
+        <div class="one">
+          <div class="two" id='pokemon_video'>
+            <video src='images/pokemon_red.mp4' width="160" height="160" style="border-radius: 8px; object-fit: cover; display: block;" autoplay muted loop playsinline></video>
+          </div>
+          <video src='images/pokemon_red.mp4' width="160" height="160" style="border-radius: 8px; object-fit: cover; display: block;" autoplay muted loop playsinline></video>
+        </div>
+        <script type="text/javascript">
+          function pokemon_start() {
+            document.getElementById('pokemon_video').style.opacity = "1";
+          }
+
+          function pokemon_stop() {
+            document.getElementById('pokemon_video').style.opacity = "0";
+          }
+          pokemon_stop()
+        </script>
+      </td>
+      <td style="padding:8px;width:80%;vertical-align:middle">
+        <a href="https://github.com/sacchinbhg/RL-PPO-GAMES">
+          <span class="papertitle">Reinforcement Learning Agent playing Games</span>
+        </a>
+        <br>
+        <strong>RL Based agent to play Pokemon Red</strong>
+        <br>
+        <em>Personal Project</em>
+        <br>
+        <a href="https://github.com/sacchinbhg/RL-PPO-GAMES">GitHub Repository</a>
+        <p></p>
+      </td>
+    </tr>
+
+    <tr onmouseout="hiddop_stop()" onmouseover="hiddop_start()" bgcolor="#ffffd0">
+      <td style="padding:16px;width:20%;vertical-align:middle">
+        <div class="one">
+          <div class="two" id='hiddop_image'>
+            <img src='images/HIDDOP.gif' width="160" style="border-radius: 8px;">
+          </div>
+          <img src='images/HIDDOP.gif' width="160" style="border-radius: 8px;">
+        </div>
+        <script type="text/javascript">
+          function hiddop_start() {
+            document.getElementById('hiddop_image').style.opacity = "1";
+          }
+
+          function hiddop_stop() {
+            document.getElementById('hiddop_image').style.opacity = "0";
+          }
+          hiddop_stop()
+        </script>
+      </td>
+      <td style="padding:8px;width:80%;vertical-align:middle">
+        <a href="https://github.com/sacchinbhg/HiDDOP">
+          <span class="papertitle">High Density-Dynamic Objects Planning (HiDDOP) with Attention-based Deep Reinforcement Learning</span>
+        </a>
+        <br>
+        <strong>Sacchin Sundar</strong>
+        <br>
+        <em>Research Project</em>
+        <br>
+        <a href="https://github.com/sacchinbhg/HiDDOP">GitHub Repository</a>
+        <p></p>
       </td>
     </tr>
 
