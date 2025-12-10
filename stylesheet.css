@@ -166,3 +166,216 @@ h3 a:hover {
 .blog-post:last-child {
     border-bottom: none;
 }
+
+/* Responsive Design - Mobile and Tablet */
+@media screen and (max-width: 768px) {
+    /* Main container - ensure full width */
+    table[style*="max-width:1000px"] {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* Header row - make cells stack */
+    table[style*="max-width:1000px"] > tbody > tr > td > table > tbody > tr > td {
+        display: block !important;
+        width: 100% !important;
+        padding: 15px 10px !important;
+    }
+    
+    /* Header: SIREN art section */
+    td[style*="width:25%"][style*="padding:2.5%"] {
+        width: 100% !important;
+        padding: 15px 10px !important;
+    }
+    
+    /* Header: Bio section */
+    td[style*="width:50%"][style*="padding:2.5%"] {
+        width: 100% !important;
+        padding: 15px 10px !important;
+    }
+    
+    /* Header: Profile photo */
+    td[style*="width:25%"][style*="padding:2.5%"]:last-of-type {
+        width: 100% !important;
+        padding: 15px 10px !important;
+        text-align: center !important;
+    }
+    
+    /* Project rows - make cells stack */
+    table[style*="border-spacing:0px 10px"] > tbody > tr > td {
+        display: block !important;
+        width: 100% !important;
+        padding: 15px 10px !important;
+    }
+    
+    /* Project image column */
+    table[style*="border-spacing:0px 10px"] > tbody > tr > td[style*="width:20%"] {
+        width: 100% !important;
+        text-align: center !important;
+        padding: 15px 10px !important;
+    }
+    
+    /* Project text column */
+    table[style*="border-spacing:0px 10px"] > tbody > tr > td[style*="width:80%"] {
+        width: 100% !important;
+        text-align: left !important;
+        padding: 15px 10px !important;
+    }
+    
+    /* Header adjustments */
+    .name {
+        font-size: 24px;
+        padding-top: 10px;
+    }
+    
+    /* Navigation links - wrap better */
+    p[style*="text-align:center"] {
+        font-size: 12px;
+        line-height: 1.8;
+    }
+    
+    p[style*="text-align:center"] a {
+        display: inline-block;
+        margin: 2px 4px;
+    }
+    
+    /* Project images/videos - smaller on mobile */
+    .one {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto;
+    }
+    
+    .two {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .one img,
+    .two img,
+    .one video,
+    .two video {
+        width: 120px !important;
+        height: 120px !important;
+    }
+    
+    /* SIREN art slideshow - adjust for mobile */
+    #siren-slideshow img {
+        height: 150px !important;
+    }
+    
+    /* Bio text - better spacing on mobile */
+    p[style*="text-align: justify"] {
+        text-align: left !important;
+        font-size: 13px;
+        line-height: 1.5;
+        margin-bottom: 12px !important;
+    }
+    
+    /* Project titles */
+    .papertitle {
+        font-size: 13px;
+    }
+    
+    /* Section headers */
+    h2 {
+        font-size: 20px;
+    }
+    
+    /* Colored boxes */
+    .colored-box {
+        padding: 15px;
+        font-size: 18px;
+    }
+    
+    /* Footer images */
+    img[src*="FRoG"],
+    img[src*="umich_robo"] {
+        height: 30px !important;
+        margin: 5px !important;
+    }
+}
+
+/* Tablet specific adjustments */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    /* Slightly reduce padding on tablets */
+    td[style*="padding:2.5%"] {
+        padding: 2% !important;
+    }
+    
+    .name {
+        font-size: 28px;
+    }
+    
+    p[style*="text-align: justify"] {
+        font-size: 13px;
+    }
+    
+    /* Project images - slightly smaller */
+    .one {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .two {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .one img,
+    .two img,
+    .one video,
+    .two video {
+        width: 140px !important;
+        height: 140px !important;
+    }
+}
+
+/* Very small mobile devices */
+@media screen and (max-width: 480px) {
+    .name {
+        font-size: 20px;
+    }
+    
+    h2 {
+        font-size: 18px;
+    }
+    
+    .papertitle {
+        font-size: 12px;
+    }
+    
+    body, td, th, tr, p, a {
+        font-size: 13px;
+    }
+    
+    /* Navigation - stack vertically on very small screens */
+    p[style*="text-align:center"] a {
+        display: block;
+        margin: 5px 0;
+    }
+    
+    /* SIREN art - smaller on very small screens */
+    #siren-slideshow img {
+        height: 120px !important;
+    }
+    
+    /* Project images - even smaller */
+    .one {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .two {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .one img,
+    .two img,
+    .one video,
+    .two video {
+        width: 100px !important;
+        height: 100px !important;
+    }
+}

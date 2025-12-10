@@ -17,6 +17,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <style>
+      /* Mobile responsive overrides */
+      @media screen and (max-width: 768px) {
+        /* Force header cells to stack */
+        table[style*="max-width:800px"] > tbody > tr > td > table > tbody > tr > td {
+          display: block !important;
+          width: 100% !important;
+          padding: 15px 10px !important;
+        }
+      }
+    </style>
     
   </head>
 

@@ -17,6 +17,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <style>
+      /* Mobile responsive overrides */
+      @media screen and (max-width: 768px) {
+        /* Force header cells to stack */
+        table[style*="max-width:1000px"] > tbody > tr > td > table > tbody > tr[style*="padding:0px"] > td {
+          display: block !important;
+          width: 100% !important;
+          padding: 15px 10px !important;
+        }
+        
+        /* Force project cells to stack */
+        table[style*="border-spacing:0px 10px"] > tbody > tr > td[style*="width:20%"] {
+          display: block !important;
+          width: 100% !important;
+          text-align: center !important;
+          padding: 15px 10px !important;
+        }
+        
+        table[style*="border-spacing:0px 10px"] > tbody > tr > td[style*="width:80%"] {
+          display: block !important;
+          width: 100% !important;
+          padding: 15px 10px !important;
+        }
+      }
+    </style>
     
   </head>
 
@@ -83,6 +108,70 @@
                 </a>
               </td>
     </tr>
+          </tbody></table>
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+              <tr>
+              <td style="padding:16px;width:100%;vertical-align:middle">
+                <h2>PrePrint</h2>
+                <p>
+                  Preprints and papers currently under review or in preparation.
+        </p>
+      </td>
+    </tr>
+          </tbody></table>
+          <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+
+    <tr bgcolor="#ffffd0">
+      <td style="padding:16px;width:20%;vertical-align:middle">
+        <div style="width: 160px; height: 160px; overflow: hidden; border-radius: 8px; position: relative; background-color: #f8f9fa;">
+          <div id="marvo-slideshow-images" style="display: flex; transition: transform 0.5s ease; width: 800px;">
+            <img src='images/MARVO/1.png' width="160" height="160" style="object-fit: contain; flex-shrink: 0;">
+            <img src='images/MARVO/2.png' width="160" height="160" style="object-fit: contain; flex-shrink: 0;">
+            <img src='images/MARVO/3.png' width="160" height="160" style="object-fit: contain; flex-shrink: 0;">
+            <img src='images/MARVO/4.png' width="160" height="160" style="object-fit: contain; flex-shrink: 0;">
+            <img src='images/MARVO/5.png' width="160" height="160" style="object-fit: contain; flex-shrink: 0;">
+          </div>
+        </div>
+        <script type="text/javascript">
+          (function() {
+            let marvoCurrentSlide = 0;
+            const marvoTotalSlides = 5;
+            const slideshow = document.getElementById('marvo-slideshow-images');
+            
+            function marvoAdvance() {
+              marvoCurrentSlide = (marvoCurrentSlide + 1) % marvoTotalSlides;
+              slideshow.style.transform = `translateX(-${marvoCurrentSlide * 160}px)`;
+            }
+            
+            // Start auto-advancing slideshow
+            setInterval(marvoAdvance, 2000);
+          })();
+        </script>
+      </td>
+      <td style="padding:8px;width:80%;vertical-align:middle">
+        <a href="https://arxiv.org/abs/2511.22860">
+          <span class="papertitle">MARVO: Marine-Adaptive Radiance-aware Visual Odometry</span>
+        </a>
+        <br>
+        <strong>Sacchin Sundar*</strong>,
+        <strong>Atman Kikani*</strong>,
+        Aaliya Alam,
+        Sumukh Shrote,
+        A. Nayeemulla Khan,
+        A. Shahina
+        <br>
+        <em>(*equal contribution)</em>
+        <br>
+        <em>Submitted to IEEE/CVF Conference on Computer Vision and Pattern Recognition 2026</em>
+        <br>
+        <a href="https://arxiv.org/abs/2511.22860">arXiv Preprint</a>
+        <p></p>
+        <p>
+          MARVO is a physics-aware visual inertial odometry framework for underwater robots that combines a transformer-based feature matcher with a Physics Aware Radiance Adapter to compensate wavelength dependent attenuation, and fuses these corrected visual factors with IMU and barometric depth in a GTSAM factor graph. It further applies a reinforcement learning based pose graph optimizer on SE(2) to refine global trajectories, improving robustness in turbid, visually degraded underwater environments.
+        </p>
+      </td>
+    </tr>
+
           </tbody></table>
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
               <tr>
