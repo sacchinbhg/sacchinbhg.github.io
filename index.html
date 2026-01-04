@@ -79,16 +79,10 @@
               <!-- Center: Description -->
               <td style="padding:2.5%;width:50%;vertical-align:middle">
                 <p class="name" style="text-align: center; margin-bottom: 20px;">
-                  Sacchin Sundar
-                </p>
-                <p style="text-align: justify; line-height: 1.6; margin-bottom: 15px;">
-                  I am a Master's student in Robotics at the University of Michigan, working in the <a href="https://fieldrobotics.engin.umich.edu/">Field Robotics Group (FRoG)</a> under the mentorship of <a href="https://robotics.umich.edu/people/faculty/katie-skinner/">Prof. Katie Skinner</a>. My research centers on developing neural scene representations that serve as substrates for action, with the goal of advancing perception systems that tightly couple sensing with control and planning.
-                </p>
-                <p style="text-align: justify; line-height: 1.6; margin-bottom: 15px;">
-                  While my current projects emphasize underwater robotics-differentiable sonar rendering, neural implicit 3D reconstruction, and dense correspondence learning for underwater SLAM (e.g., MASt3R)-my broader interest lies in building physics-informed representations that generalize across robotic platforms.
+                  <strong>Sacchin Sundar</strong>
                 </p>
                 <p style="text-align: justify; line-height: 1.6; margin-bottom: 20px;">
-                  I serve as a Graduate Student Instructor for ROB 330 (SLAM & Navigation) and am passionate about teaching and outreach opportunities.
+                  I am a Master's student in Robotics at the University of Michigan and a member of the <a href="https://fieldrobotics.engin.umich.edu/">Field Robotics Group (FRoG)</a>, advised by <a href="https://robotics.umich.edu/people/faculty/katie-skinner/">Prof. Katie Skinner</a>. My research focuses on learning representations that support perception, planning, and control, with an emphasis on neural scene representations as substrates for action. I am particularly interested in how physically grounded and structured representations can bridge low-level sensory inputs with high-level decision-making in complex environments. My prior work spans dense correspondence learning, neural implicit 3D reconstruction, and differentiable sensing models developed in challenging domains, which inform my current focus on generalizable perception-planning systems. I also serve as a Graduate Student Instructor for ROB 330 (SLAM & Navigation) and am deeply invested in teaching, mentorship, and outreach.
                 </p>
                 <p style="text-align:center; margin-top: 20px;">
                   <a href="index.html">Home</a> &nbsp;/&nbsp;
@@ -184,6 +178,48 @@
     </tr>
           </tbody></table>
           <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+
+    <tr bgcolor="#ffffd0">
+      <td style="padding:16px;width:20%;vertical-align:middle">
+        <div style="width: 160px; height: 160px; overflow: hidden; border-radius: 8px; position: relative; background-color: #f8f9fa;">
+          <div id="nsgp-slideshow-images" style="display: flex; transition: transform 0.5s ease; width: 640px;">
+            <img src='images/NSGR/1.png' width="160" height="160" style="object-fit: contain; flex-shrink: 0;">
+            <img src='images/NSGR/2.png' width="160" height="160" style="object-fit: contain; flex-shrink: 0;">
+            <img src='images/NSGR/3.png' width="160" height="160" style="object-fit: contain; flex-shrink: 0;">
+            <img src='images/NSGR/4.png' width="160" height="160" style="object-fit: contain; flex-shrink: 0;">
+          </div>
+        </div>
+        <script type="text/javascript">
+          (function() {
+            let nsgpCurrentSlide = 0;
+            const nsgpTotalSlides = 4;
+            const nsgpSlideshow = document.getElementById('nsgp-slideshow-images');
+
+            function nsgpAdvance() {
+              nsgpCurrentSlide = (nsgpCurrentSlide + 1) % nsgpTotalSlides;
+              nsgpSlideshow.style.transform = `translateX(-${nsgpCurrentSlide * 160}px)`;
+            }
+
+            // Start auto-advancing slideshow
+            setInterval(nsgpAdvance, 2000);
+          })();
+        </script>
+      </td>
+      <td style="padding:8px;width:80%;vertical-align:middle">
+        <a href="images/NSGR/NSGR.pdf">
+          <span class="papertitle">NSGR: Neuro Symbolic Grounding in Gaussian Representations</span>
+        </a>
+        <br>
+        <strong>Sacchin Sundar</strong>,
+        Anandi Arora,
+        Michael Tanner
+        <br>
+        <em>Course Project</em>, 2025
+        <br>
+        <a href="images/NSGR/NSGR.pdf">PDF</a>
+        <p></p>
+      </td>
+    </tr>
 
     <tr onmouseout="bags_stop()" onmouseover="bags_start()" bgcolor="#ffffd0">
       <td style="padding:16px;width:20%;vertical-align:middle">
