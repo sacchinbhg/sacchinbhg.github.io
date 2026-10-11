@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ஐந்திணை · Aintinai</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; }
+  body { font-family: Georgia, "Noto Serif Tamil", serif; color: #efe3c6; background: #241a12; }
+  #BG { position: absolute; inset: 0; background: #241a12; }
+  #PLASTER { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: multiply; opacity: 0.5; z-index: 2; }
+  #BG svg { display: block; width: 100%; height: 100%; }
+  #PANEL {
+    position: fixed; top: 12px; left: 12px; z-index: 10;
+    border: 1px solid rgba(239,227,198,0.5); background: rgba(36,26,18,0.72);
+    padding: 8px 10px; font-size: 13px; line-height: 1.5; min-width: 200px;
+  }
+  #PANEL h1 { margin: 0 0 2px; font-size: 18px; font-weight: normal; letter-spacing: 1px; }
+  #PANEL .sub { font-size: 11px; opacity: 0.7; margin-bottom: 6px; }
+  #PANEL .row { margin-top: 5px; }
+  #PANEL input[type=text], #PANEL input[type=number] {
+    font: inherit; width: 90px; border: 1px solid rgba(239,227,198,0.5);
+    background: rgba(36,26,18,0.5); color: inherit; padding: 1px 4px;
+  }
+  #PANEL button {
+    font: inherit; border: 1px solid rgba(239,227,198,0.5); background: rgba(36,26,18,0.5);
+    color: inherit; cursor: pointer; padding: 1px 8px;
+  }
+  #PANEL button:hover { background: rgba(239,227,198,0.2); }
+  #TINAI { font-size: 15px; margin-top: 6px; }
+  #TINAI small { display: block; font-size: 11px; opacity: 0.7; }
+  .edge {
+    position: fixed; top: 0; bottom: 0; width: 48px; z-index: 5; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px; color: rgba(239,227,198,0.5); user-select: none;
+  }
+  .edge:hover { background: rgba(239,227,198,0.1); }
+  #L { left: 0; } #R { right: 0; }
+  #TIP {
+    position: fixed; z-index: 20; pointer-events: none; display: none;
+    background: rgba(36,26,18,0.85); color: #efe3c6; border: 1px solid rgba(239,227,198,0.5);
+    padding: 4px 9px; font-size: 13px; white-space: nowrap;
+  }
+  #TIP b { font-size: 15px; font-weight: normal; }
+  g[data-tag]:hover { filter: brightness(1.12); }
+  .drift { animation: drift 90s ease-in-out infinite alternate; }
+  .rain { animation: rain 0.9s linear infinite; }
+  .flap { animation: flap 0.5s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: 50% 50%; }
+  .fly { animation: fly 60s linear infinite; }
+  .flyback { animation: flyback 60s linear infinite; }
+  .flow { animation: flow 3s ease-in-out infinite alternate; }
+  .flutter { animation: flutter 1.1s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: 0% 50%; }
+  .bunting-flutter { animation: bunting-flutter 3.6s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: 50% 0%; }
+  .smoke { animation: smoke 4s linear infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+  .sway { animation: sway 5s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: 50% 100%; }
+  .bob { animation: bob 0.7s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: 50% 100%; }
+  .mill { animation: mill 22s ease-in-out infinite alternate; }
+  .stroll { animation: stroll 38s linear infinite; }
+  .strollback { animation: strollback 38s linear infinite; }
+  .roll { animation: stroll 50s linear infinite; }
+  .rollback { animation: strollback 50s linear infinite; }
+  .rise { animation: rise 5s ease-out infinite; }
+  @keyframes drift { from { transform: translateX(-40px); } to { transform: translateX(40px); } }
+  @keyframes rain { from { transform: translateY(-6px); opacity: 0.9; } to { transform: translateY(14px); opacity: 0.4; } }
+  @keyframes flap { from { transform: scaleY(1); } to { transform: scaleY(0.35); } }
+  @keyframes fly { from { transform: translateX(-120px); } to { transform: translateX(120px); } }
+  @keyframes flyback { from { transform: translateX(120px); } to { transform: translateX(-120px); } }
+  @keyframes flow { from { transform: translateX(-5px); opacity: 0.9; } to { transform: translateX(5px); opacity: 0.6; } }
+  @keyframes flutter { from { transform: skewY(-6deg) scaleX(1); } to { transform: skewY(6deg) scaleX(0.92); } }
+  @keyframes bunting-flutter { from { transform: skewX(-5deg); } to { transform: skewX(5deg); } }
+  @keyframes smoke { from { transform: translateY(0) scaleX(1); opacity: 0.8; } to { transform: translateY(-14px) scaleX(1.3); opacity: 0; } }
+  @keyframes sway { from { transform: rotate(-1.6deg); } to { transform: rotate(1.6deg); } }
+  @keyframes bob { from { transform: rotate(-1.5deg) translateY(0); } to { transform: rotate(1.5deg) translateY(-1.2px); } }
+  @keyframes mill { from { transform: translateX(-26px); } to { transform: translateX(26px); } }
+  @keyframes stroll { 0% { transform: translateX(-160px); opacity: 0; } 8% { opacity: 1; } 92% { opacity: 1; } 100% { transform: translateX(160px); opacity: 0; } }
+  @keyframes strollback { 0% { transform: translateX(160px); opacity: 0; } 8% { opacity: 1; } 92% { opacity: 1; } 100% { transform: translateX(-160px); opacity: 0; } }
+  @keyframes rise { 0% { transform: translateY(0); opacity: 0; } 15% { opacity: 1; } 70% { opacity: 1; } 100% { transform: translateY(-70px); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .drift, .rain, .flap, .fly, .flyback, .flow, .flutter, .bunting-flutter, .smoke, .sway, .bob, .mill, .stroll, .strollback, .roll, .rollback, .rise { animation: none; } }
+</style>
+</head>
+<body>
+  <div id="PLASTER"></div>
+  <div id="PANEL">
+    <h1>ஐந்திணை</h1>
+    <div class="sub">aintinai · the five landscapes</div>
+    <div class="row">
+      <input type="text" id="INP_SEED" title="seed">
+      <button onclick="reloadWSeed(document.getElementById('INP_SEED').value)">generate</button>
+    </div>
+    <div class="row">
+      <button title="view left" onclick="xcroll(-step())">&#x3008;</button>
+      <input type="number" id="INC_STEP" value="200" min="20" max="5000" step="20" title="step">
+      <button title="view right" onclick="xcroll(step())">&#x3009;</button>
+    </div>
+    <div class="row">
+      <label><input id="AUTO_SCROLL" type="checkbox" onchange="autoxcroll(step())"> auto-scroll</label>
+    </div>
+    <div class="row">
+      <button onclick="download('aintinai-' + SEED + '.svg', document.getElementById('BG').innerHTML)">download .svg</button>
+    </div>
+    <div id="TINAI"></div>
+  </div>
+  <div id="L" class="edge" onclick="xcroll(-step())">&#x3008;</div>
+  <div id="R" class="edge" onclick="xcroll(step())">&#x3009;</div>
+  <div id="BG"></div>
+  <div id="TIP"></div>
+  <canvas id="bgcanv" width="256" height="256" hidden></canvas>
+
+  <script src="js/engine/prng.js"></script>
+  <script src="js/engine/noise.js"></script>
+  <script src="js/engine/polytools.js"></script>
+  <script src="js/engine/util.js"></script>
+  <script src="js/engine/brush.js"></script>
+  <script src="js/engine/ink.js"></script>
+  <script src="js/engine/chunks.js?v=coverage-3"></script>
+  <script src="js/gen/tinai.js"></script>
+  <script src="js/gen/palette.js"></script>
+  <script src="js/gen/layers.js"></script>
+  <script src="js/gen/hills.js"></script>
+  <script src="js/gen/river.js"></script>
+  <script src="js/gen/road.js"></script>
+  <script src="js/gen/palmyra.js"></script>
+  <script src="js/gen/trees.js"></script>
+  <script src="js/gen/figures.js"></script>
+  <script src="js/gen/arch.js"></script>
+  <script src="js/gen/people.js"></script>
+  <script src="js/gen/fauna.js"></script>
+  <script src="js/gen/flora.js"></script>
+  <script src="js/gen/built.js"></script>
+  <script src="js/gen/temples.js"></script>
+  <script src="js/gen/town.js?v=bunting-3"></script>
+  <script src="js/gen/vignettes.js"></script>
+  <script src="js/gen/street.js?v=anchored-3"></script>
+  <script src="js/gen/names.js"></script>
+  <script src="js/gen/planner.js"></script>
+  <script>
+    // --- seed ---------------------------------------------------------------
+    var SEED = "" + new Date().getTime();
+    var EMBED = false, DRIFT = 0;
+    parseArgs({
+      seed: function(x) { SEED = x == "" ? SEED : x; },
+      x: function(x) { MEM.cursx = parseFloat(x) || 0; },
+      embed: function(x) { EMBED = x != "0"; },
+      drift: function(x) { DRIFT = parseFloat(x) || 0; },
+    });
+    if (EMBED) {
+      document.getElementById("PANEL").style.display = "none";
+      document.getElementById("L").style.display = "none";
+      document.getElementById("R").style.display = "none";
+      document.body.style.cursor = "grab";
+    }
+    Math.seed(SEED);
+    Noise.noise(0.1); // initialise the permutation table from the page seed
+    document.getElementById("INP_SEED").value = SEED;
+
+    function reloadWSeed(s) {
+      var u = window.location.href.split("?")[0];
+      window.location.href = u + "?seed=" + encodeURIComponent(s);
+    }
+    function step() {
+      return parseFloat(document.getElementById("INC_STEP").value) || 200;
+    }
+
+    // --- lime plaster texture, multiplied over the mural ---------------
+    (function() {
+      var canvas = document.getElementById("bgcanv");
+      var ctx = canvas.getContext("2d");
+      var reso = 256;
+      for (var i = 0; i < reso; i++) {
+        for (var j = 0; j < reso; j++) {
+          var c = 232 + Noise.noise(i * 0.06, j * 0.06) * 22 - Math.random() * 18;
+          c += (Noise.noise(i * 0.4, j * 0.4) - 0.5) * 16;
+          ctx.fillStyle = "rgb(" + c.toFixed(0) + "," + (c * 0.97).toFixed(0) + "," + (c * 0.9).toFixed(0) + ")";
+          ctx.fillRect(i, j, 1, 1);
+        }
+      }
+      document.getElementById("PLASTER").style.backgroundImage = "url(" + canvas.toDataURL("image/png") + ")";
+    })();
+
+    // --- run ---------------------------------------------------------------
+    function onViewChange() {
+      var cx = MEM.cursx + MEM.vw / 2;
+      var k = Tinai.dominant(cx);
+      var m = Tinai.meta[k];
+      var sg = Town.segment(cx);
+      if (sg && Math.abs(cx - sg.center) < Street.WIDTH / 2) {
+        document.getElementById("TINAI").innerHTML = "நகரம் · nagaram<small>the busy streets of Madurai</small>";
+        return;
+      }
+      document.getElementById("TINAI").innerHTML =
+        Tinai.tamil[k] + " · " + Tinai.names[k] +
+        "<small>" + m.land + " · " + m.time + " · " + m.flower + "</small>";
+    }
+    MEM.planner = tinaiPlanner;
+    var UNNAMED = { sky: 1, ground: 1, far: 1, top: 1, bottom: 1, night: 1, glows: 1, river: 1, road: 1, haze: 1, aerial: 1, street: 1 };
+    MEM.named = function(tag) { return !UNNAMED[tag]; };
+    // names on hover
+    var tip = document.getElementById("TIP");
+    function showTip(e) {
+      var el = document.elementFromPoint(e.clientX, e.clientY);
+      var g = el && el.closest ? el.closest("g[data-tag]") : null;
+      if (!g) { tip.style.display = "none"; return; }
+      var n = NAMES[g.getAttribute("data-tag")];
+      tip.innerHTML = n ? "<b>" + n[0] + "</b> · " + n[1] : g.getAttribute("data-tag");
+      tip.style.display = "block";
+      tip.style.left = Math.min(window.innerWidth - tip.offsetWidth - 8, e.clientX + 14) + "px";
+      tip.style.top = (e.clientY + 16) + "px";
+    }
+    document.addEventListener("mousemove", showTip);
+    document.addEventListener("touchstart", function(e) { if (e.touches[0]) showTip(e.touches[0]); }, { passive: true });
+    fitWindow();
+    update();
+    window.addEventListener("resize", function() { fitWindow(); update(); });
+    // hand scrolling: drag, swipe, horizontal wheel, arrow keys, with
+    // momentum; the slow drift resumes a few seconds after the hand lets go
+    var vel = 0, dragging = false, dragX = 0, dragMoved = 0, idleAt = 0, last = null;
+    var worldPerPx = function() { return MEM.vw / MEM.windx; };
+    function touch() { idleAt = performance.now() + 3500; }
+    (function tick(now) {
+      if (last != null && !document.hidden) {
+        var dt = Math.min(0.06, (now - last) / 1000);
+        var dx = 0;
+        if (!dragging && Math.abs(vel) > 2) { dx += vel * dt; vel *= Math.pow(0.08, dt); }
+        else if (!dragging) vel = 0;
+        if (DRIFT > 0 && !dragging && now > idleAt) dx += DRIFT * dt;
+        if (dx != 0) xcroll(dx);
+      }
+      last = now;
+      requestAnimationFrame(tick);
+    })(performance.now());
+    var bg = document.getElementById("BG");
+    bg.addEventListener("mousedown", function(e) { if (e.button != 0) return; dragging = true; dragX = e.clientX; dragMoved = 0; vel = 0; touch(); e.preventDefault(); });
+    window.addEventListener("mousemove", function(e) {
+      if (!dragging) return;
+      var d = (dragX - e.clientX) * worldPerPx();
+      dragX = e.clientX; dragMoved += Math.abs(d);
+      xcroll(d); vel = d * 60; touch();
+    });
+    window.addEventListener("mouseup", function() { dragging = false; touch(); });
+    var tX = null;
+    bg.addEventListener("touchstart", function(e) { if (e.touches.length == 1) { tX = e.touches[0].clientX; vel = 0; touch(); } }, { passive: true });
+    bg.addEventListener("touchmove", function(e) {
+      if (tX == null || e.touches.length != 1) return;
+      var d = (tX - e.touches[0].clientX) * worldPerPx();
+      tX = e.touches[0].clientX; xcroll(d); vel = d * 60; touch();
+    }, { passive: true });
+    bg.addEventListener("touchend", function() { tX = null; touch(); }, { passive: true });
+    bg.addEventListener("wheel", function(e) {
+      // sideways wheel or shift+wheel pans the painting; plain vertical wheel is left to the page
+      var d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : (e.shiftKey ? e.deltaY : 0);
+      if (d == 0) return;
+      e.preventDefault(); xcroll(d * worldPerPx() * 1.2); vel = 0; touch();
+    }, { passive: false });
+    document.addEventListener("keydown", function(e) { if (e.key == "ArrowLeft" || e.key == "ArrowRight") touch(); });
+    if (EMBED) bg.addEventListener("click", function() {
+      if (dragMoved > 6) return; // a drag, not a click
+      window.open(window.location.href.replace(/[?&]embed=1/, "").replace(/[?&]drift=[^&]*/, "") + (window.location.search ? "&" : "?") + "x=" + Math.round(MEM.cursx), "_blank");
+    });
+    document.addEventListener("keydown", function(e) {
+      if (e.key == "ArrowLeft") xcroll(-step());
+      if (e.key == "ArrowRight") xcroll(step());
+    });
+  </script>
+</body>
+</html>

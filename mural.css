@@ -1,0 +1,95 @@
+/* Aintinai mural palette for the portfolio */
+:root {
+  --ink: #241a12; --ink2: #3a2a1c; --cream: #efe3c6; --cream2: #d9c9a3; --red: #9e3a24; --darkred: #6e2415;
+  --yellow: #d9a441; --green: #4f6b3a; --blue: #4a6a86; --paper: #f4ead4;
+}
+html { scroll-behavior: smooth; }
+body.mural { margin: 0; background: var(--ink); color: var(--cream); font-family: "Inter", "Lato", sans-serif; font-size: 15px; line-height: 1.65; }
+body.mural a { color: var(--yellow); text-decoration: none; }
+body.mural a:hover { text-decoration: underline; }
+.serif { font-family: Georgia, "Noto Serif Tamil", "Times New Roman", serif; }
+
+/* hero: the painting fills the screen */
+#hero { position: relative; height: min(100vh, 54vw); min-height: 520px; background: var(--ink); overflow: hidden; }
+#hero iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+#hero .veil { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to top, rgba(36,26,18,0.82) 0%, rgba(36,26,18,0.35) 22%, rgba(36,26,18,0) 45%); }
+#hero .card { position: absolute; left: 0; right: 0; bottom: 0; padding: 0 5vw 36px; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; pointer-events: none; }
+#hero .card > * { pointer-events: auto; }
+#hero h1 { margin: 0; font-size: clamp(34px, 5vw, 58px); font-weight: normal; letter-spacing: 1px; color: var(--cream); text-shadow: 0 2px 12px rgba(0,0,0,0.5); line-height: 1.05; }
+#hero .tag { margin: 8px 0 14px; font-size: clamp(14px, 1.5vw, 18px); color: var(--cream2); text-shadow: 0 1px 8px rgba(0,0,0,0.5); }
+#hero .links a { display: inline-block; margin: 0 10px 6px 0; padding: 5px 12px; border: 1px solid rgba(239,227,198,0.55); color: var(--cream); background: rgba(36,26,18,0.55); backdrop-filter: blur(3px); font-size: 14px; }
+#hero .links a:hover { background: rgba(239,227,198,0.2); text-decoration: none; }
+#hero .art { text-align: right; font-size: 13px; color: var(--cream2); text-shadow: 0 1px 8px rgba(0,0,0,0.5); max-width: 300px; }
+#hero .art b { display: block; font-size: 22px; font-weight: normal; color: var(--cream); }
+#hero .art a { color: var(--cream); border-bottom: 1px solid rgba(239,227,198,0.5); }
+#hero .corner { position: absolute; top: 18px; right: 5vw; display: flex; gap: 8px; }
+#hero .corner a, #hero .corner button { font: inherit; font-size: 13px; color: var(--cream); border: 1px solid rgba(239,227,198,0.5); background: rgba(36,26,18,0.55); padding: 5px 11px; cursor: pointer; }
+#hero .corner a:hover, #hero .corner button:hover { background: rgba(239,227,198,0.2); text-decoration: none; }
+#hero .cue { position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%); color: var(--cream2); font-size: 20px; opacity: 0.7; animation: cue 1.6s ease-in-out infinite alternate; }
+@keyframes cue { from { transform: translate(-50%, 0); } to { transform: translate(-50%, 6px); } }
+
+/* sections */
+.band { max-width: 1040px; margin: 0 auto; padding: 56px 24px; }
+.divider { height: 14px; background: repeating-linear-gradient(135deg, var(--darkred) 0 10px, var(--yellow) 10px 12px, var(--darkred) 12px 22px); opacity: 0.9; }
+.kolam { height: 10px; background-image: radial-gradient(circle at 6px 5px, var(--cream) 1.6px, transparent 2px); background-size: 14px 10px; opacity: 0.55; }
+h2.sec { font-family: Georgia, "Noto Serif Tamil", serif; font-weight: normal; font-size: 30px; margin: 0 0 6px; color: var(--cream); }
+h2.sec small { display: block; font-size: 14px; color: var(--cream2); font-family: "Inter", sans-serif; margin-top: 4px; }
+.lead { color: var(--cream2); margin: 0 0 26px; }
+
+/* about */
+.about { display: grid; grid-template-columns: 1fr 260px; gap: 40px; align-items: center; }
+.about video { width: 100%; max-width: 260px; aspect-ratio: 1; object-fit: cover; border-radius: 50%; border: 3px solid var(--yellow); box-shadow: 0 6px 24px rgba(0,0,0,0.4); display: block; margin: 0 auto; }
+.about p { text-align: justify; }
+.about .where { font-size: 13px; color: var(--cream2); text-align: center; margin-top: 10px; }
+.about .where img { height: 34px; vertical-align: middle; margin: 6px 8px; background: var(--cream); padding: 3px 6px; border-radius: 4px; }
+
+/* work cards */
+.card-row { display: grid; grid-template-columns: 200px 1fr; gap: 24px; align-items: center; background: var(--ink2); border: 1px solid rgba(239,227,198,0.15); padding: 18px; margin-bottom: 16px; }
+.card-row .media { width: 200px; height: 200px; overflow: hidden; border-radius: 6px; background: var(--paper); position: relative; }
+.card-row .media img, .card-row .media video { width: 200px; height: 200px; object-fit: cover; display: block; }
+.card-row .media .strip { display: flex; transition: transform 0.5s ease; }
+.card-row .media .strip img { object-fit: contain; flex-shrink: 0; }
+.card-row .title { font-family: Georgia, serif; font-size: 20px; color: var(--cream); }
+.card-row .authors { margin: 6px 0 2px; color: var(--cream2); }
+.card-row .authors b { color: var(--cream); font-weight: 600; }
+.card-row .venue { font-style: italic; color: var(--cream2); font-size: 14px; }
+.card-row .links { margin-top: 8px; font-size: 14px; }
+.card-row .links a { margin-right: 14px; }
+.card-row .abs { margin: 10px 0 0; color: var(--cream2); font-size: 14px; }
+
+/* aintinai section */
+.aintinai-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 36px; align-items: start; }
+.thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.thumbs a { display: block; border: 1px solid rgba(239,227,198,0.35); overflow: hidden; aspect-ratio: 2 / 1; }
+.thumbs img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
+.thumbs a:hover img { transform: scale(1.06); }
+.thumbs figcaption { font-size: 12px; color: var(--cream2); margin-top: 3px; }
+.gifbox { border: 1px solid rgba(239,227,198,0.35); margin-top: 8px; }
+.gifbox img { width: 100%; display: block; }
+.siren { background: var(--ink2); border: 1px solid rgba(239,227,198,0.15); padding: 16px; margin-top: 24px; }
+.siren h3 { margin: 0 0 4px; font-family: Georgia, serif; font-weight: normal; font-size: 20px; }
+.siren p { margin: 0 0 10px; font-size: 13px; color: var(--cream2); font-style: italic; }
+.siren .frame { position: relative; overflow: hidden; border-radius: 6px; }
+.siren .frame div { display: flex; transition: transform 0.5s ease; }
+.siren .frame img { width: 100%; height: 190px; object-fit: cover; flex-shrink: 0; }
+.siren button { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: 0; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 16px; }
+.siren .count { font-size: 12px; color: var(--cream2); text-align: center; margin-top: 6px; }
+
+footer { text-align: center; font-size: 13px; color: var(--cream2); padding: 30px 24px 40px; }
+
+@media (max-width: 820px) {
+  #hero { height: 72vh; min-height: 480px; }
+  #hero .card { flex-direction: column; align-items: flex-start; padding-bottom: 28px; }
+  #hero .art { text-align: left; max-width: none; }
+  .about { grid-template-columns: 1fr; }
+  .about video { max-width: 200px; }
+  .card-row { grid-template-columns: 1fr; }
+  .card-row .media { width: 100%; height: auto; aspect-ratio: 1; max-width: 320px; }
+  .card-row .media img, .card-row .media video { width: 100%; height: 100%; }
+  .aintinai-grid { grid-template-columns: 1fr; }
+  .band { padding: 40px 18px; }
+}
+
+/* Research and experience entries without preview media. */
+.card-row.text-card { grid-template-columns: 1fr; }
+.card-row h3.title { margin: 0; font-weight: normal; line-height: 1.4; }
