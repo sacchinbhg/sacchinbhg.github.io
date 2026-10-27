@@ -1,155 +1,134 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Sacchin Sundar - Research Engineer | Robot Learning</title>
-    <meta name="author" content="Sacchin Sundar">
-    <meta name="description" content="Research Engineer • World Models • Robot Learning • 3D Perception • Aintinai, a generative Tamil landscape">
-    <meta property="og:title" content="Sacchin Sundar - Research Engineer | Robot Learning">
-    <meta property="og:description" content="Research Engineer • World Models • Robot Learning • 3D Perception">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://sacchinbhg.github.io">
-    <meta property="og:image" content="tinai/screenshots/madurai.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Sacchin Sundar - Research Engineer | Robot Learning">
-    <meta name="twitter:description" content="Research Engineer • World Models • Robot Learning • 3D Perception">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    <link rel="stylesheet" type="text/css" href="mural.css">
-  </head>
-
-  <body class="mural">
-
-    <!-- The painting: an infinite Tamil landscape, drifting -->
-    <section id="hero">
-      <iframe id="aintinai-frame" data-painting="tinai/index.html" title="Aintinai, the five landscapes"></iframe>
-      <div class="veil"></div>
-      <div class="corner">
-        <a id="aintinai-open" href="tinai/index.html" target="_blank">open the painting</a>
-        <button onclick="aintinaiNewSeed()">new world</button>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#231d18">
+  <meta name="author" content="Sacchin Sundar">
+  <link rel="icon" href="images/favicon/favicon.ico">
+  <link rel="preload" href="fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts/fonts.css">
+  <link rel="stylesheet" href="mural.css?v=living-3">
+  <script src="site.js?v=living-3" defer></script>
+  <script type="module" src="kolam.mjs?v=1"></script>
+  <title>Sacchin Sundar — Robot learning &amp; generative art</title>
+  <meta name="description" content="Research engineer, generative artist, and a little of Madurai. Explore Aintinai, a living Tamil landscape, and my work in robot learning.">
+  <meta property="og:title" content="Sacchin Sundar — Robot learning &amp; generative art">
+  <meta property="og:description" content="Research engineer. Generative artist. Rooted in Madurai.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sacchinbhg.github.io/">
+  <meta property="og:image" content="https://sacchinbhg.github.io/images/aintinai-madurai.png">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap">
+    <a class="hello" href="index.html" aria-label="Sacchin Sundar, home"><span lang="ta">வணக்கம்</span><span>Hello, I’m Sacchin.</span></a>
+    <nav aria-label="Main navigation"><a href="#aintinai">Art</a><a href="#kolam">Play</a><a href="#about">About</a><a href="#work">Research</a><a href="mailto:sacchin@umich.edu">Say hello</a></nav>
+  </header>
+  <main id="main">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="wrap hero-intro"><h1 id="page-title">Sacchin Sundar</h1><p>Robot learning, generative art,<br>and a little of Madurai.</p></div>
+      <div class="painting-stage" id="painting-stage">
+        <img class="painting-poster" id="painting-poster" src="images/aintinai-madurai.png" width="1440" height="600" alt="A generative mural of Madurai, with people and market stalls on a street leading to the Meenakshi temple." fetchpriority="high">
+        <iframe id="aintinai-frame" title="Aintinai: an interactive Tamil landscape" data-src="tinai/index.html?embed=1&amp;seed=panai&amp;center=-21165&amp;drift=32" tabindex="0"></iframe>
+        <div class="painting-actions"><button class="control" id="motion-toggle" type="button" aria-pressed="false" hidden>Pause motion</button><a class="control" id="aintinai-open" href="tinai/index.html?seed=panai&amp;center=-21165">Enter the painting <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></div>
       </div>
-      <div class="card">
-        <div>
-          <h1 class="serif">Sacchin Sundar</h1>
-          <div class="tag">Research Engineer · world models · robot foundation models · physical robot deployment</div>
-          <div class="links">
-            <a href="#about">About</a><a href="#work">Research</a><a href="#aintinai">The painting</a>
-            <a href="https://substack.com/@latentgaussian" target="_blank">Substack</a>
-            <a href="mailto:sacchin@umich.edu">Email</a>
-            <a href="https://scholar.google.com/citations?user=UW1Hsd8AAAAJ&hl=en">Scholar</a>
-            <a href="https://www.linkedin.com/in/sacchin-ganesh-sundar/">LinkedIn</a>
-            <a href="https://github.com/sacchinbhg">GitHub</a>
+      <div class="wrap painting-caption"><div class="place-name"><span id="place-tamil" lang="ta">மதுரை</span><span id="place-name">Madurai, my hometown</span></div><p id="place-description">A street that leads home, to the Meenakshi temple.</p><a class="text-link" href="#aintinai">The story of Aintinai <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+      <div class="wrap journey-tools" id="journey-tools" hidden>
+        <p id="journey-state">An endless walk. Drag to take the lead.</p>
+        <label for="journey-speed">Pace <input id="journey-speed" type="range" min="14" max="70" value="32" step="2" aria-label="Landscape travel speed"><span id="journey-pace">Wander</span></label>
+      </div>
+      <div class="wrap landscape-nav" aria-label="Explore the painting">
+        <p>Wander somewhere</p><div class="landscape-choices">
+          <a href="tinai/index.html?seed=panai&amp;center=-21165" data-scene="madurai" aria-current="true">Madurai</a>
+          <a href="tinai/index.html?seed=panai&amp;center=-5800" data-scene="kurinji">Mountains</a>
+          <a href="tinai/index.html?seed=panai&amp;center=8600" data-scene="mullai">Forest</a>
+          <a href="tinai/index.html?seed=panai&amp;center=17600" data-scene="marutham">Farmland</a>
+          <a href="tinai/index.html?seed=panai&amp;center=600" data-scene="neithal">Coast</a>
+          <a href="tinai/index.html?seed=panai&amp;center=2400" data-scene="paalai">Drylands</a>
+        </div><button class="new-world" id="new-world" type="button" hidden>New world <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+      </div>
+      <p class="sr-only" id="painting-status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="art-story light-section" id="aintinai" aria-labelledby="art-heading">
+      <div class="wrap story-intro"><h2 id="art-heading"><span lang="ta">ஐந்திணை</span><span>Aintinai</span></h2><div class="story-copy"><p class="statement">A landscape is also<br>a way of feeling.</p><p>In classical Tamil Sangam poetry, the five landscapes connect the natural world with our inner lives. Mountains speak of union. Forests, of waiting. The coast, of longing.</p><p>I made Aintinai to bring those worlds to life, drawing on the colours, dark outlines, and ornamental borders of Nayak temple murals. Its paths eventually lead to Madurai, where I’m from.</p><a class="text-link" href="tinai/index.html?seed=panai&amp;center=-21165">Explore the full painting <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div></div>
+      <div class="landscape-gallery wrap" aria-label="The five landscapes of Sangam poetry">
+        <a class="landscape-piece" href="tinai/index.html?seed=panai&amp;x=-6400"><img src="tinai/screenshots/kurinji.jpg" width="1200" height="800" loading="lazy" alt="Kurinji: layered hills and mountain life under a night sky."><div><span lang="ta">குறிஞ்சி</span><h3>Kurinji</h3><p>Mountains &amp; union</p></div></a>
+        <a class="landscape-piece" href="tinai/index.html?seed=panai&amp;x=8000"><img src="tinai/screenshots/mullai.jpg" width="1200" height="800" loading="lazy" alt="Mullai: green groves, pasture, and village life."><div><span lang="ta">முல்லை</span><h3>Mullai</h3><p>Forest &amp; waiting</p></div></a>
+        <a class="landscape-piece" href="tinai/index.html?seed=panai&amp;x=17000"><img src="tinai/screenshots/marutham.jpg" width="1200" height="800" loading="lazy" alt="Marutham: cultivated fields, rivers, and Tamil temple architecture."><div><span lang="ta">மருதம்</span><h3>Marutham</h3><p>Farmland &amp; domestic life</p></div></a>
+        <a class="landscape-piece" href="tinai/index.html?seed=panai&amp;x=0"><img src="tinai/screenshots/neithal.jpg" width="1200" height="800" loading="lazy" alt="Neithal: coastal water, fishing boats, and palm groves."><div><span lang="ta">நெய்தல்</span><h3>Neithal</h3><p>Coast &amp; longing</p></div></a>
+        <a class="landscape-piece" href="tinai/index.html?seed=panai&amp;x=1800"><img src="tinai/screenshots/paalai.jpg" width="1200" height="800" loading="lazy" alt="Paalai: dry earth, sparse vegetation, and travellers."><div><span lang="ta">பாலை</span><h3>Paalai</h3><p>Drylands &amp; separation</p></div></a>
+      </div>
+      <div class="wrap making"><p>Drawn with code.<br>Rooted in a place.</p><div><p>Every tree, shrine, animal, and person comes from hand-authored drawing code. Seeded randomness gives the rules a different expression in every world. No image-generation model; just JavaScript, SVG, and a world that unfolds as you explore.</p><div class="inline-links"><a href="tinai/gallery.html">See every subject</a><a href="tinai/screenshots/faces.jpg">Meet the people</a></div></div></div>
+    </section>
+
+    <section class="kolam-section" id="kolam" aria-labelledby="kolam-heading" hidden>
+      <div class="wrap kolam-layout">
+        <div class="kolam-copy">
+          <h2 id="kolam-heading">A little kolam.<br><em>Made by you.</em></h2>
+          <p class="statement">Dots become curves.<br>Curves become possibilities.</p>
+          <p>A small playground inspired by kolam. Turn a tile and watch the threads find a new path. There is no right answer, just your next pattern.</p>
+
+        </div>
+        <div class="kolam-work">
+          <div class="kolam-board" id="kolam-board" data-palette="terracotta">
+            <svg class="kolam-drawing" id="kolam-drawing" viewBox="-44 -44 472 472" aria-hidden="true"></svg>
+            <div class="kolam-grid" id="kolam-grid" role="grid" aria-label="Turn tiles to change the kolam" aria-describedby="kolam-help"></div>
           </div>
+          <div class="kolam-caption"><p id="kolam-help">Tap a tile to turn it. Arrow keys to explore.</p><span lang="ta">கோலம்</span></div>
+          <p class="sr-only" role="status" id="kolam-status" aria-live="polite" aria-atomic="true"></p>
         </div>
-        <div class="art serif">
-          <b>ஐந்திணை · Aintinai</b>
-          the five landscapes of Sangam poetry, drawn anew as you scroll, in the manner of the Nayak temple murals. Drag the painting to travel. <a href="#aintinai">about the painting</a>
-        </div>
-      </div>
-      <div class="cue">⌄</div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- About -->
-    <section class="band" id="about">
-      <div class="about">
-        <div>
-          <h2 class="sec">About<small>Research Engineer · Member of Technical Staff at a stealth company</small></h2>
-          <p>I build learning systems that connect perception, prediction, and action on physical robots. My work spans world models, robot foundation models, multimodal learning, and 3D perception, with a focus on reusable manipulation skills, online policy refinement, and reliable real-world deployment.</p>
-          <p>I am currently a Member of Technical Staff at a stealth company, working on world action models and industrial robot manipulation. I completed my master's at the University of Michigan in May 2026, where I worked with <a href="https://robotics.umich.edu/people/faculty/katie-skinner/">Prof. Katie Skinner</a> in the <a href="https://fieldrobotics.engin.umich.edu/">Field Robotics Group (FRoG)</a> on underwater perception and SLAM.</p>
-          <p>Outside robotics, I make generative art rooted in Tamil landscapes and the streets of Madurai, where I am from. Aintinai is one expression of that interest; I also write on <a href="https://substack.com/@latentgaussian">Latent Gaussian on Substack</a>.</p>
-        </div>
-        <div>
-          <a href="images/SacchinSundar.mp4"><video src="images/SacchinSundar.mp4" autoplay muted loop playsinline></video></a>
-          <div class="where">
-            <img src="images/FRoG.jpg" alt="FRoG"><img src="images/umich_robo.png" alt="UMich Robotics">
+        <div class="kolam-controls">
+          <div class="kolam-palette" role="group" aria-label="Pattern colours">
+            <button type="button" class="colour-choice" data-palette="terracotta" aria-pressed="true"><span class="colour-sample sample-terracotta" aria-hidden="true"></span>Terracotta</button>
+            <button type="button" class="colour-choice" data-palette="indigo" aria-pressed="false"><span class="colour-sample sample-indigo" aria-hidden="true"></span>Indigo</button>
+            <button type="button" class="colour-choice" data-palette="leaf" aria-pressed="false"><span class="colour-sample sample-leaf" aria-hidden="true"></span>Leaf</button>
           </div>
+          <label class="symmetry-control"><input type="checkbox" id="kolam-symmetry" checked> Four-way symmetry</label>
+          <div class="kolam-actions"><button type="button" class="button button-light" id="kolam-shuffle">Surprise me <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3l10 10h3M16 13l4 4-4 4M4 17h3l3-3m4-4 3-3h3m-4-4 4 4-4 4"/></svg></button><button type="button" class="kolam-undo" id="kolam-undo" disabled>Undo</button></div>
+          <a class="text-link kolam-save" id="kolam-save" download="my-kolam.svg">Keep this pattern <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg></a>
         </div>
       </div>
     </section>
 
-    <div class="kolam"></div>
-
-    <!-- Research -->
-    <section class="band" id="work">
-      <h2 class="sec">Research<small>Robot learning, online policy refinement, and 3D perception</small></h2>
-      <div class="card-row text-card"><div>
-        <h3 class="title">SCOUT: Critic-Guided Schrödinger Transport for Online VLA Refinement</h3>
-        <div class="authors"><b>Sacchin Sundar<sup>1*</sup></b>, Huaidian Hou<sup>1*</sup>, Yaoru Liu<sup>2</sup>, Dong Sun<sup>2</sup>, Siyuan Ji<sup>2</sup>, Junshan Zhang<sup>1,3</sup> <em>(*equal contribution)</em></div>
-        <div class="venue">Submitted to ICLR 2027</div>
-        <div class="links"><span>arXiv — coming soon</span> · <span>Website — coming soon</span></div>
-        <p class="abs">Critic-guided Schrödinger bridge refinement adapts frozen vision-language-action (VLA) policies using sparse rewards. A lightweight two-step actor removes candidate search and critic evaluation from inference. Evaluated on LIBERO, LIBERO-PRO, and bimanual robot hardware, with 92.3% mean LIBERO success compared with a 53.1% base policy, and stacking time reduced from 26.1 to 13.3 seconds.</p>
-      </div></div>
-      <div class="card-row text-card"><div>
-        <a class="title" href="https://umfieldrobotics.github.io/SurfSLAM/">SurfSLAM: Sim-to-Real Underwater Stereo Reconstruction For Real-Time SLAM</a>
-        <div class="authors">Onur Bagoren*, Seth Isaacson*, <b>Sacchin Sundar</b>, Yung-Ching Sun, Anja Sheppard, Haoyu Ma, Abrar Shariff, Ram Vasudevan, Katherine A. Skinner <em>(*equal contribution)</em></div>
-        <div class="venue">Accepted to IEEE Transactions on Field Robotics (T-FR)</div>
-        <div class="links"><a href="https://arxiv.org/abs/2601.10814">arXiv</a><a href="https://umfieldrobotics.github.io/SurfSLAM/">Project website</a></div>
-        <p class="abs">SurfSLAM is a real-time underwater SLAM framework that combines learned stereo depth with acoustic-inertial odometry for localization and dense 3D reconstruction. Its sim-to-real training pipeline uses physics-based underwater image augmentation and self-supervised fine-tuning to adapt stereo networks to challenging underwater conditions. Evaluated on real-world shipwreck surveys, the framework improves stereo depth estimation, trajectory estimation, and reconstruction of complex underwater scenes.</p>
-      </div></div>
+    <section class="about-section wrap" id="about" aria-labelledby="about-heading">
+      <figure class="portrait"><video id="portrait-video" src="images/SacchinSundar.mp4" poster="images/portrait-poster.jpg" muted loop playsinline preload="metadata" aria-label="Portrait of Sacchin Sundar"></video><figcaption>Sacchin Sundar<button type="button" class="text-button" id="portrait-toggle" hidden>Play portrait</button></figcaption></figure>
+      <div class="about-copy"><h2 id="about-heading">A little about me</h2><p class="statement">I build learning systems that connect perception, prediction, and action on physical robots.</p><p>I’m a Member of Technical Staff at a stealth company, working on world action models and industrial robot manipulation. My work spans world models, robot foundation models, multimodal learning, and 3D perception, with a focus on reusable manipulation skills, online policy refinement, and reliable real-world deployment.</p><p>I completed my master’s at the University of Michigan in May 2026, where I worked with <a href="https://robotics.umich.edu/people/faculty/katie-skinner/">Prof. Katie Skinner</a> in the <a href="https://fieldrobotics.engin.umich.edu/">Field Robotics Group</a> on underwater perception and SLAM.</p><p>Outside robotics, I make generative art rooted in Tamil landscapes and the streets of Madurai. I also write on <a href="https://substack.com/@latentgaussian">Latent Gaussian</a>.</p><div class="affiliations"><img src="images/FRoG.jpg" width="50" height="50" alt="Field Robotics Group" loading="lazy"><img src="images/umich_robo.png" width="153" height="40" alt="University of Michigan Robotics" loading="lazy"></div></div>
     </section>
 
-    <div class="kolam"></div>
-
-    <!-- The painting, explained -->
-    <section class="band" id="aintinai">
-      <h2 class="sec serif">ஐந்திணை · Aintinai<small>The five landscapes, a generative Tamil mural</small></h2>
-      <div class="aintinai-grid">
-        <div>
-          <p class="lead">
-            In classical Tamil Sangam poetry, landscape is a language for human experience. The five thinai connect a place's terrain, flowers, animals, season, and hour with the emotional life of its people: <a href="tinai/index.html?seed=panai&amp;x=-6400" target="_blank" rel="noopener">kurinji</a>, the mountains and lovers' union; <a href="tinai/index.html?seed=panai&amp;x=8000" target="_blank" rel="noopener">mullai</a>, the forest and patient waiting; <a href="tinai/index.html?seed=panai&amp;x=17000" target="_blank" rel="noopener">marutham</a>, the farmland and the tensions of domestic life; <a href="tinai/index.html?seed=panai&amp;x=0" target="_blank" rel="noopener">neithal</a>, the coast and longing; and <a href="tinai/index.html?seed=panai&amp;x=1800" target="_blank" rel="noopener">paalai</a>, the parched land of separation and difficult journeys. They are ways of seeing nature and human life as intertwined.
-          </p>
-          <p class="lead">
-            Aintinai brings that tradition into a moving, generative painting, drawing on the flat colour, dark outlines, and ornamental borders of Nayak temple murals. The landscape drifts from hills and pasture to fields, backwaters, and dry country, then into <a href="tinai/index.html?seed=panai&amp;x=-21876&amp;v=3" target="_blank" rel="noopener">Madurai</a>, where I am from, with its street leading toward the Meenakshi temple. Trees, shrines, animals, people at work, and small street scenes give the world its everyday life alongside its monuments.
-          </p>
-          <p class="lead">
-            This is generative art made without AI. Every visual element is described in hand-authored drawing code: JavaScript draws SVG shapes and paths, while CSS supplies styling and animation. Rules guide how the terrain blends, where subjects belong, and how their forms vary; seeded randomness gives those rules a different expression in every world. What you see is assembled in your browser as you explore, rather than produced by an image-generation model. Open the full painting and point at a subject to discover its Tamil and English names. Built on the chunk engine of <a href="https://github.com/LingDong-/shan-shui-inf">{Shan, Shui}*</a> by Lingdong Huang.
-          </p>
-          <p style="font-size:13px;color:var(--cream2);margin-top:10px"><a href="tinai/index.html" target="_blank">open the painting</a> · <a href="tinai/gallery.html" target="_blank">every subject it can draw</a> · <a href="tinai/screenshots/faces.jpg" target="_blank">the people</a></p>
-        </div>
-        <div>
-          <div class="siren">
-            <h3>Random Art¿</h3>
-            <p>My research has often produced weird art as a wrong byproduct. While this was annoying during the research process, it now looks cool enough to show on my website!</p>
-            <div class="frame">
-              <div id="siren-slideshow">
-                <img src="siren_art/siren_1.png" alt="SIREN Art 1"><img src="siren_art/siren_2.png" alt="SIREN Art 2"><img src="siren_art/siren_3.png" alt="SIREN Art 3"><img src="siren_art/siren_4.png" alt="SIREN Art 4"><img src="siren_art/siren_5.png" alt="SIREN Art 5"><img src="siren_art/siren_6.png" alt="SIREN Art 6">
-              </div>
-              <button onclick="previousSlide()" style="left:6px">‹</button>
-              <button onclick="nextSlide()" style="right:6px">›</button>
-            </div>
-            <div class="count" id="slide-counter">1 / 6</div>
-          </div>
-        </div>
+    <section class="research-section light-section" id="work" aria-labelledby="research-heading">
+      <div class="wrap"><div class="section-intro"><h2 id="research-heading">Selected research</h2><p>Learning to act in the world.<br>Robot learning and 3D perception.</p></div>
+      <article class="publication">
+      <div class="publication-name"><h3>SCOUT</h3><p>Submitted to ICLR 2027</p></div>
+      <div class="publication-body"><p class="publication-title">Critic-Guided Schrödinger Transport for Online VLA Refinement</p>
+        <p class="authors"><b>Sacchin Sundar<sup>1*</sup></b>, Huaidian Hou<sup>1*</sup>, Yaoru Liu<sup>2</sup>, Dong Sun<sup>2</sup>, Siyuan Ji<sup>2</sup>, Junshan Zhang<sup>1,3</sup> <em>(*equal contribution)</em></p>
+        <details><summary>Read abstract <svg class="plus" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path class="vertical" d="M12 5v14"/></svg></summary><p>Critic-guided Schrödinger bridge refinement adapts frozen vision-language-action (VLA) policies using sparse rewards. A lightweight two-step actor removes candidate search and critic evaluation from inference. Evaluated on LIBERO, LIBERO-PRO, and bimanual robot hardware, with 92.3% mean LIBERO success compared with a 53.1% base policy, and stacking time reduced from 26.1 to 13.3 seconds.</p></details>
+        <div class="publication-links"><span class="publication-note">Paper &amp; project page coming soon</span></div>
       </div>
+    </article><article class="publication">
+      <div class="publication-name"><h3>SurfSLAM</h3><p>Accepted to IEEE Transactions on Field Robotics</p></div>
+      <div class="publication-body"><p class="publication-title">Sim-to-Real Underwater Stereo Reconstruction For Real-Time SLAM</p>
+        <p class="authors">Onur Bagoren*, Seth Isaacson*, <b>Sacchin Sundar</b>, Yung-Ching Sun, Anja Sheppard, Haoyu Ma, Abrar Shariff, Ram Vasudevan, Katherine A. Skinner <em>(*equal contribution)</em></p>
+        <details><summary>Read abstract <svg class="plus" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path class="vertical" d="M12 5v14"/></svg></summary><p>SurfSLAM is a real-time underwater SLAM framework that combines learned stereo depth with acoustic-inertial odometry for localization and dense 3D reconstruction. Its sim-to-real training pipeline uses physics-based underwater image augmentation and self-supervised fine-tuning to adapt stereo networks to challenging underwater conditions. Evaluated on real-world shipwreck surveys, the framework improves stereo depth estimation, trajectory estimation, and reconstruction of complex underwater scenes.</p></details>
+        <div class="publication-links"><a href="https://arxiv.org/abs/2601.10814">Read the paper</a><a href="https://umfieldrobotics.github.io/SurfSLAM/">Project website</a></div>
+      </div>
+    </article>
+      <a class="text-link research-scholar" href="https://scholar.google.com/citations?user=UW1Hsd8AAAAJ&amp;hl=en">Find me on Google Scholar <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
     </section>
 
-    <div class="divider"></div>
-    <footer>
-      Website design around the Aintinai painting. Earlier template based on <a href="https://github.com/jonbarron/jonbarron_website">Jon Barron's academic website</a>; source at <a href="https://github.com/sacchinbhg/academic-website">github.com/sacchinbhg/academic-website</a>.
-    </footer>
-
-    <script>
-      function aintinaiNewSeed() {
-        var values = new Uint32Array(2);
-        window.crypto.getRandomValues(values);
-        var seed = Array.from(values, function(value) { return value.toString(36); }).join("-");
-        document.getElementById("aintinai-frame").src = "tinai/index.html?embed=1&drift=26&v=3&seed=" + seed;
-        document.getElementById("aintinai-open").href = "tinai/index.html?seed=" + seed + "&v=3";
-      }
-      aintinaiNewSeed();
-      var currentSlide = 0, totalSlides = 6;
-      function showSlide(n) {
-        currentSlide = (n + totalSlides) % totalSlides;
-        document.getElementById("siren-slideshow").style.transform = "translateX(-" + (currentSlide * 100) + "%)";
-        document.getElementById("slide-counter").textContent = (currentSlide + 1) + " / " + totalSlides;
-      }
-      function nextSlide() { showSlide(currentSlide + 1); }
-      function previousSlide() { showSlide(currentSlide - 1); }
-      setInterval(nextSlide, 4000);
-      showSlide(0);
-    </script>
-  </body>
+    <section class="accidents-section wrap" aria-labelledby="accidents-heading">
+      <div class="accidents-copy"><h2 id="accidents-heading">Happy accidents</h2><p class="statement">Sometimes, the wrong result<br>is worth keeping.</p><p>My research has often produced weird art as an unintended byproduct. Frustrating in the lab; interesting enough to find a home here.</p><p class="small-copy">A collection of six experiments.</p><div class="gallery-controls"><button id="previous-art" class="icon-button" type="button" aria-label="Previous artwork"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><span id="slide-counter" aria-live="polite" aria-atomic="true">1 / 6</span><button id="next-art" class="icon-button" type="button" aria-label="Next artwork"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div></div>
+      <figure class="accidents-art"><img id="siren-art" src="siren_art/siren_1.png" width="800" height="800" alt="Experimental SIREN artwork 1 of 6: colourful abstract neural patterns." loading="lazy"><figcaption>From the lab, with a little serendipity.</figcaption></figure>
+    </section>
+    <section class="writing-strip light-section" aria-labelledby="writing-heading"><div class="wrap"><h2 id="writing-heading">A thought, now and then.</h2><p>I write at Latent Gaussian.</p><a class="text-link" href="https://substack.com/@latentgaussian">Read on Substack <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></div></section>
+  </main>
+  <footer class="site-footer" id="contact">
+    <div class="wrap footer-top"><h2>Let’s stay curious.</h2><div><p>Robotics, art, or a good conversation.</p><a class="button button-light" href="mailto:sacchin@umich.edu">Say hello <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div></div>
+    <div class="wrap footer-bottom"><a class="signature" href="index.html">Sacchin Sundar</a><div class="social-links"><a href="https://scholar.google.com/citations?user=UW1Hsd8AAAAJ&amp;hl=en">Scholar</a><a href="https://github.com/sacchinbhg">GitHub</a><a href="https://www.linkedin.com/in/sacchin-ganesh-sundar/">LinkedIn</a><a href="https://substack.com/@latentgaussian">Substack</a></div></div>
+    <div class="wrap colophon"><p>A little of Madurai, wherever I am.</p><p>Aintinai builds on <a href="https://github.com/LingDong-/shan-shui-inf">{Shan, Shui}*</a> by Lingdong Huang. <a href="https://github.com/sacchinbhg/sacchinbhg.github.io">Website source</a>. Earlier site based on <a href="https://github.com/jonbarron/jonbarron_website">Jon Barron’s template</a>.</p></div>
+  </footer>
+</body>
 </html>

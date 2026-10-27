@@ -71,6 +71,7 @@ function chunkloader(xmin, xmax) {
       if (c && MEM.named && MEM.named(plan[i].tag)) c = "<g data-tag='" + plan[i].tag + "'>" + c + "</g>";
       addChunk({
         tag: plan[i].tag,
+        chunkX: x0,
         x: plan[i].x,
         y: plan[i].y,
         w: plan[i].w,
@@ -112,6 +113,23 @@ function viewupdate() {
 }
 
 function update() {
+  // Keep a finite window of generated drawing data during an endless journey.
+  // Per-chunk seeds recreate the same artwork when a visitor returns.
+  var keepMin = Math.floor(MEM.cursx / MEM.cwid) * MEM.cwid - 8 * MEM.cwid;
+  var keepMax = Math.ceil((MEM.cursx + MEM.vw) / MEM.cwid) * MEM.cwid + 8 * MEM.cwid;
+  if (MEM.xmax < keepMin || MEM.xmin > keepMax) {
+    MEM.chunks = [];
+    MEM.xmin = MEM.xmax = Math.floor(MEM.cursx / MEM.cwid) * MEM.cwid;
+  } else {
+    MEM.chunks = MEM.chunks.filter(function(chunk) { return chunk.chunkX >= keepMin && chunk.chunkX < keepMax; });
+    MEM.xmin = Math.max(MEM.xmin, keepMin);
+    MEM.xmax = Math.min(MEM.xmax, keepMax);
+  }
+  if (typeof Town !== 'undefined') {
+    Object.keys(Town.segCache).forEach(function(key) {
+      if (Number(key) < keepMin - 16000 || Number(key) > keepMax + 16000) delete Town.segCache[key];
+    });
+  }
   chunkloader(MEM.cursx, MEM.cursx + MEM.vw);
   chunkrender(MEM.cursx, MEM.cursx + MEM.vw);
   document.getElementById("BG").innerHTML =

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ta">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -77,32 +77,36 @@
   @keyframes rise { 0% { transform: translateY(0); opacity: 0; } 15% { opacity: 1; } 70% { opacity: 1; } 100% { transform: translateY(-70px); opacity: 0; } }
   @media (prefers-reduced-motion: reduce) { .drift, .rain, .flap, .fly, .flyback, .flow, .flutter, .bunting-flutter, .smoke, .sway, .bob, .mill, .stroll, .strollback, .roll, .rollback, .rise { animation: none; } }
 </style>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="viewer.css">
 </head>
 <body>
   <div id="PLASTER"></div>
   <div id="PANEL">
-    <h1>ஐந்திணை</h1>
+    <a class="back-home" href="../index.html">Back to Sacchin’s world</a>
+    <h1 lang="ta">ஐந்திணை</h1>
     <div class="sub">aintinai · the five landscapes</div>
     <div class="row">
-      <input type="text" id="INP_SEED" title="seed">
+      <input aria-label="World seed" type="text" id="INP_SEED" title="seed">
       <button onclick="reloadWSeed(document.getElementById('INP_SEED').value)">generate</button>
     </div>
     <div class="row">
       <button title="view left" onclick="xcroll(-step())">&#x3008;</button>
-      <input type="number" id="INC_STEP" value="200" min="20" max="5000" step="20" title="step">
+      <input type="number" aria-label="Pan distance" id="INC_STEP" value="200" min="20" max="5000" step="20" title="step">
       <button title="view right" onclick="xcroll(step())">&#x3009;</button>
     </div>
     <div class="row">
-      <label><input id="AUTO_SCROLL" type="checkbox" onchange="autoxcroll(step())"> auto-scroll</label>
+      <label><input id="AUTO_SCROLL" type="checkbox" onchange="setAutoScroll(this.checked)"> auto-scroll</label>
     </div>
     <div class="row">
       <button onclick="download('aintinai-' + SEED + '.svg', document.getElementById('BG').innerHTML)">download .svg</button>
     </div>
+    <button id="VIEWER_MOTION" type="button" aria-pressed="false" onclick="setMotionPaused(!PAUSED)">Pause motion</button>
     <div id="TINAI"></div>
   </div>
-  <div id="L" class="edge" onclick="xcroll(-step())">&#x3008;</div>
-  <div id="R" class="edge" onclick="xcroll(step())">&#x3009;</div>
-  <div id="BG"></div>
+  <button type="button" aria-label="Pan painting left" id="L" class="edge" onclick="xcroll(-step())">&#x3008;</button>
+  <button type="button" aria-label="Pan painting right" id="R" class="edge" onclick="xcroll(step())">&#x3009;</button>
+  <div id="BG" role="img" aria-label="A generative Tamil landscape with people, animals, trees, and temples"></div>
   <div id="TIP"></div>
   <canvas id="bgcanv" width="256" height="256" hidden></canvas>
 
@@ -112,7 +116,7 @@
   <script src="js/engine/util.js"></script>
   <script src="js/engine/brush.js"></script>
   <script src="js/engine/ink.js"></script>
-  <script src="js/engine/chunks.js?v=coverage-3"></script>
+  <script src="js/engine/chunks.js?v=living-4"></script>
   <script src="js/gen/tinai.js"></script>
   <script src="js/gen/palette.js"></script>
   <script src="js/gen/layers.js"></script>
@@ -136,19 +140,42 @@
   <script>
     // --- seed ---------------------------------------------------------------
     var SEED = "" + new Date().getTime();
-    var EMBED = false, DRIFT = 0;
+    var EMBED = false, DRIFT = 32, CENTER = null;
+    var motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var PAUSED = motionPreference.matches;
+    function setMotionPaused(value) {
+      PAUSED = !!value;
+      document.body.classList.toggle('motion-paused', PAUSED);
+      var button = document.getElementById('VIEWER_MOTION');
+      if (button) { button.textContent = PAUSED ? 'Play motion' : 'Pause motion'; button.setAttribute('aria-pressed', String(PAUSED)); }
+    }
+    motionPreference.addEventListener('change', function(e) { setMotionPaused(e.matches); });
+    window.addEventListener('message', function(e) {
+      if (e.source !== window.parent || e.origin !== window.location.origin) return;
+      if (e.data && e.data.type === 'aintinai-motion' && typeof e.data.paused === 'boolean') setMotionPaused(e.data.paused);
+      if (e.data && e.data.type === 'aintinai-speed' && Number.isFinite(e.data.speed)) {
+        DRIFT = Math.max(0, Math.min(100, e.data.speed));
+        document.getElementById('AUTO_SCROLL').checked = DRIFT > 0;
+      }
+    });
     parseArgs({
       seed: function(x) { SEED = x == "" ? SEED : x; },
       x: function(x) { MEM.cursx = parseFloat(x) || 0; },
+      center: function(x) { CENTER = Number(x); },
+      paused: function(x) { PAUSED = x === "1" || motionPreference.matches; },
+      v: function() {},
       embed: function(x) { EMBED = x != "0"; },
-      drift: function(x) { DRIFT = parseFloat(x) || 0; },
+      drift: function(x) { DRIFT = Math.max(0, Math.min(100, parseFloat(x) || 0)); },
     });
     if (EMBED) {
+      document.body.classList.add("is-embedded");
       document.getElementById("PANEL").style.display = "none";
       document.getElementById("L").style.display = "none";
       document.getElementById("R").style.display = "none";
       document.body.style.cursor = "grab";
     }
+    document.getElementById('AUTO_SCROLL').checked = DRIFT > 0;
+    setMotionPaused(PAUSED);
     Math.seed(SEED);
     Noise.noise(0.1); // initialise the permutation table from the page seed
     document.getElementById("INP_SEED").value = SEED;
@@ -156,6 +183,10 @@
     function reloadWSeed(s) {
       var u = window.location.href.split("?")[0];
       window.location.href = u + "?seed=" + encodeURIComponent(s);
+    }
+    function setAutoScroll(enabled) {
+      DRIFT = enabled ? 32 : 0;
+      if (enabled) setMotionPaused(false);
     }
     function step() {
       return parseFloat(document.getElementById("INC_STEP").value) || 200;
@@ -178,18 +209,29 @@
     })();
 
     // --- run ---------------------------------------------------------------
+    var lastPlace = '', lastBroadcast = -Infinity, lastPlaceCheck = -Infinity;
     function onViewChange() {
       var cx = MEM.cursx + MEM.vw / 2;
+      var now = performance.now();
+      if (now - lastPlaceCheck < 250) return;
+      lastPlaceCheck = now;
       var k = Tinai.dominant(cx);
       var m = Tinai.meta[k];
-      var sg = Town.segment(cx);
-      if (sg && Math.abs(cx - sg.center) < Street.WIDTH / 2) {
-        document.getElementById("TINAI").innerHTML = "நகரம் · nagaram<small>the busy streets of Madurai</small>";
-        return;
+      // Use the planner's grid so continuous drift never creates float-keyed cache entries.
+      var sg = Town.segment(Math.floor(cx / 256) * 256);
+      var inTown = sg && Math.abs(cx - sg.center) < Street.WIDTH / 2;
+      var place = inTown ? 'madurai' : Tinai.names[k];
+      // The view moves every frame; place labels only change at a landscape boundary.
+      if (place !== lastPlace) {
+        document.getElementById('TINAI').innerHTML = inTown
+          ? 'நகரம் · nagaram<small>the busy streets of Madurai</small>'
+          : Tinai.tamil[k] + ' · ' + Tinai.names[k] + '<small>' + m.land + ' · ' + m.time + ' · ' + m.flower + '</small>';
+        lastPlace = place;
       }
-      document.getElementById("TINAI").innerHTML =
-        Tinai.tamil[k] + " · " + Tinai.names[k] +
-        "<small>" + m.land + " · " + m.time + " · " + m.flower + "</small>";
+      if (EMBED && now - lastBroadcast > 750) {
+        window.parent.postMessage({ type: 'aintinai-view', place: place, center: cx }, window.location.origin);
+        lastBroadcast = now;
+      }
     }
     MEM.planner = tinaiPlanner;
     var UNNAMED = { sky: 1, ground: 1, far: 1, top: 1, bottom: 1, night: 1, glows: 1, river: 1, road: 1, haze: 1, aerial: 1, street: 1 };
@@ -209,20 +251,25 @@
     document.addEventListener("mousemove", showTip);
     document.addEventListener("touchstart", function(e) { if (e.touches[0]) showTip(e.touches[0]); }, { passive: true });
     fitWindow();
+    if (CENTER !== null && Number.isFinite(CENTER)) MEM.cursx = CENTER - MEM.vw / 2;
+    MEM.xmin = MEM.xmax = Math.floor(MEM.cursx / MEM.cwid) * MEM.cwid;
     update();
-    window.addEventListener("resize", function() { fitWindow(); update(); });
+    window.addEventListener("resize", function() {
+      var center = MEM.cursx + MEM.vw / 2;
+      fitWindow(); MEM.cursx = center - MEM.vw / 2; update();
+    });
     // hand scrolling: drag, swipe, horizontal wheel, arrow keys, with
     // momentum; the slow drift resumes a few seconds after the hand lets go
     var vel = 0, dragging = false, dragX = 0, dragMoved = 0, idleAt = 0, last = null;
     var worldPerPx = function() { return MEM.vw / MEM.windx; };
     function touch() { idleAt = performance.now() + 3500; }
     (function tick(now) {
-      if (last != null && !document.hidden) {
+      if (last != null && !document.hidden && !PAUSED) {
         var dt = Math.min(0.06, (now - last) / 1000);
         var dx = 0;
-        if (!dragging && Math.abs(vel) > 2) { dx += vel * dt; vel *= Math.pow(0.08, dt); }
+        if (!dragging && tX == null && Math.abs(vel) > 2) { dx += vel * dt; vel *= Math.pow(0.08, dt); }
         else if (!dragging) vel = 0;
-        if (DRIFT > 0 && !dragging && now > idleAt) dx += DRIFT * dt;
+        if (DRIFT > 0 && !dragging && tX == null && now > idleAt) dx += DRIFT * dt;
         if (dx != 0) xcroll(dx);
       }
       last = now;
@@ -237,14 +284,16 @@
       xcroll(d); vel = d * 60; touch();
     });
     window.addEventListener("mouseup", function() { dragging = false; touch(); });
-    var tX = null;
-    bg.addEventListener("touchstart", function(e) { if (e.touches.length == 1) { tX = e.touches[0].clientX; vel = 0; touch(); } }, { passive: true });
+    var tX = null, tY = null;
+    bg.addEventListener("touchstart", function(e) { if (e.touches.length == 1) { tX = e.touches[0].clientX; tY = e.touches[0].clientY; vel = 0; touch(); } }, { passive: true });
     bg.addEventListener("touchmove", function(e) {
       if (tX == null || e.touches.length != 1) return;
+      if (Math.abs(e.touches[0].clientY - tY) > Math.abs(e.touches[0].clientX - tX)) return;
       var d = (tX - e.touches[0].clientX) * worldPerPx();
       tX = e.touches[0].clientX; xcroll(d); vel = d * 60; touch();
     }, { passive: true });
     bg.addEventListener("touchend", function() { tX = null; touch(); }, { passive: true });
+    bg.addEventListener("touchcancel", function() { tX = null; vel = 0; touch(); }, { passive: true });
     bg.addEventListener("wheel", function(e) {
       // sideways wheel or shift+wheel pans the painting; plain vertical wheel is left to the page
       var d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : (e.shiftKey ? e.deltaY : 0);
@@ -252,11 +301,10 @@
       e.preventDefault(); xcroll(d * worldPerPx() * 1.2); vel = 0; touch();
     }, { passive: false });
     document.addEventListener("keydown", function(e) { if (e.key == "ArrowLeft" || e.key == "ArrowRight") touch(); });
-    if (EMBED) bg.addEventListener("click", function() {
-      if (dragMoved > 6) return; // a drag, not a click
-      window.open(window.location.href.replace(/[?&]embed=1/, "").replace(/[?&]drift=[^&]*/, "") + (window.location.search ? "&" : "?") + "x=" + Math.round(MEM.cursx), "_blank");
-    });
+
     document.addEventListener("keydown", function(e) {
+      if (/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName)) return;
+      if (e.key == "ArrowLeft" || e.key == "ArrowRight") e.preventDefault();
       if (e.key == "ArrowLeft") xcroll(-step());
       if (e.key == "ArrowRight") xcroll(step());
     });

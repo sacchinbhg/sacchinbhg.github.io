@@ -1,0 +1,33 @@
+body { font-family: 'DM Sans', sans-serif; }
+body.motion-paused *, body.motion-paused *::before, body.motion-paused *::after { animation-play-state: paused !important; }
+#BG { touch-action: pan-y; }
+#PANEL { background: #231d18; color: #f2ebdc; border: 0; padding: 20px; top: 20px; left: 20px; width: 245px; min-width: 0; }
+.back-home { display: block; color: #e6bd77; font-size: 12px; margin-bottom: 16px; text-decoration: none; }
+#PANEL h1 { font: 400 24px/1.5 'Noto Serif Tamil', serif; letter-spacing: 0; }
+#PANEL .sub { opacity: 1; color: #c6bba8; font-size: 12px; margin-bottom: 20px; }
+#PANEL .row { margin-top: 10px; display: flex; align-items: center; gap: 8px; }
+#PANEL input[type=text], #PANEL input[type=number] { box-sizing: border-box; border: 0; background: #3e3329; font-size: 16px; padding: 8px; min-width: 0; height: 38px; }
+#PANEL input[type=text] { width: 116px; }
+#PANEL input[type=number] { flex: 1; width: 60px; }
+#PANEL button { border: 0; background: #e6bd77; color: #231d18; font: 500 13px/1.3 'DM Sans', sans-serif; min-height: 38px; padding: 8px 12px; touch-action: manipulation; }
+#PANEL label { font-size: 13px; }
+#PANEL #VIEWER_MOTION { background: #3e3329; color: #f2ebdc; margin-top: 10px; }
+#TINAI { font-size: 14px; margin-top: 18px; }
+#TINAI small { opacity: 1; color: #c6bba8; font-size: 12px; margin-top: 5px; }
+.edge { border: 0; background: none; }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid #e6bd77; outline-offset: 3px; }
+button:active { transform: scale(.97); }
+#TIP { border: 0; background: #231d18; padding: 8px 12px; }
+@media (max-width: 600px) {
+  #PANEL { top: auto; bottom: 18px; left: 18px; right: 18px; width: auto; padding: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+  .back-home { grid-column: 1 / -1; margin: 0; }
+  #PANEL h1 { font-size: 21px; }
+  #PANEL .sub { align-self: center; margin: 0; }
+  #PANEL .row { margin: 0; }
+  #PANEL input[type=text] { flex: 1; width: 50px; }
+  #PANEL button { padding-inline: 8px; }
+  #PANEL #VIEWER_MOTION { margin: 0; }
+  #TINAI { grid-column: 1 / -1; margin-top: 6px; }
+  #L, #R { bottom: 230px; width: 38px; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
