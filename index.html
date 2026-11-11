@@ -3,132 +3,73 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#231d18">
-  <meta name="author" content="Sacchin Sundar">
+  <meta name="theme-color" content="#10110f">
+  <title>Sacchin Sundar — Without a word</title>
+  <meta name="description" content="A late arrival. A 2-minute-24-second story told through Bharatanatyam-inspired ASCII eyes, light, rain, and jasmine.">
+  <meta property="og:title" content="Sacchin Sundar — Without a word">
+  <meta property="og:description" content="An expressive eye study inspired by Bharatanatyam, with Sangam poetry and art a little further in.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sacchinbhg.github.io/">
+  <meta property="og:image" content="https://sacchinbhg.github.io/images/eyes-poster.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="images/favicon/favicon.ico">
   <link rel="preload" href="fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="fonts/fonts.css">
-  <link rel="stylesheet" href="mural.css?v=living-3">
-  <script src="site.js?v=living-3" defer></script>
-  <script type="module" src="kolam.mjs?v=1"></script>
-  <title>Sacchin Sundar — Robot learning &amp; generative art</title>
-  <meta name="description" content="Research engineer, generative artist, and a little of Madurai. Explore Aintinai, a living Tamil landscape, and my work in robot learning.">
-  <meta property="og:title" content="Sacchin Sundar — Robot learning &amp; generative art">
-  <meta property="og:description" content="Research engineer. Generative artist. Rooted in Madurai.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://sacchinbhg.github.io/">
-  <meta property="og:image" content="https://sacchinbhg.github.io/images/aintinai-madurai.png">
-  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="landing.css?v=3">
+  <link rel="stylesheet" href="eye-story.css?v=3">
+  <script type="module" src="landing.mjs?v=5"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header wrap">
-    <a class="hello" href="index.html" aria-label="Sacchin Sundar, home"><span lang="ta">வணக்கம்</span><span>Hello, I’m Sacchin.</span></a>
-    <nav aria-label="Main navigation"><a href="#aintinai">Art</a><a href="#kolam">Play</a><a href="#about">About</a><a href="#work">Research</a><a href="mailto:sacchin@umich.edu">Say hello</a></nav>
-  </header>
-  <main id="main">
-    <section class="hero" aria-labelledby="page-title">
-      <div class="wrap hero-intro"><h1 id="page-title">Sacchin Sundar</h1><p>Robot learning, generative art,<br>and a little of Madurai.</p></div>
-      <div class="painting-stage" id="painting-stage">
-        <img class="painting-poster" id="painting-poster" src="images/aintinai-madurai.png" width="1440" height="600" alt="A generative mural of Madurai, with people and market stalls on a street leading to the Meenakshi temple." fetchpriority="high">
-        <iframe id="aintinai-frame" title="Aintinai: an interactive Tamil landscape" data-src="tinai/index.html?embed=1&amp;seed=panai&amp;center=-21165&amp;drift=32" tabindex="0"></iframe>
-        <div class="painting-actions"><button class="control" id="motion-toggle" type="button" aria-pressed="false" hidden>Pause motion</button><a class="control" id="aintinai-open" href="tinai/index.html?seed=panai&amp;center=-21165">Enter the painting <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></div>
+  <div class="landing-shell">
+    <header class="landing-header">
+      <h1>Sacchin Sundar</h1>
+      <nav aria-label="Main navigation"><a href="sangam.html">Sangam poetry &amp; art</a><a href="about.html">About</a></nav>
+    </header>
+    <main class="landing-art" id="main" aria-label="Without a word — a Bharatanatyam eye study">
+      <div class="performance">
+      <div class="eyes-scene" id="eyes-scene">
+        <figure class="eye-poster" id="ascii-fallback"><img src="images/eyes-poster.png" width="1070" height="428" alt="Expressive, kohl-framed ASCII eyes with a raised brow, a bindi, and a small gold pendant."></figure>
+        <canvas id="ascii-portrait" width="1100" height="440" role="img" aria-label="A dancer’s expressive ASCII eyes tell a story through sharp glances, arched brows, blinks, and a softening smile." hidden></canvas>
       </div>
-      <div class="wrap painting-caption"><div class="place-name"><span id="place-tamil" lang="ta">மதுரை</span><span id="place-name">Madurai, my hometown</span></div><p id="place-description">A street that leads home, to the Meenakshi temple.</p><a class="text-link" href="#aintinai">The story of Aintinai <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
-      <div class="wrap journey-tools" id="journey-tools" hidden>
-        <p id="journey-state">An endless walk. Drag to take the lead.</p>
-        <label for="journey-speed">Pace <input id="journey-speed" type="range" min="14" max="70" value="32" step="2" aria-label="Landscape travel speed"><span id="journey-pace">Wander</span></label>
-      </div>
-      <div class="wrap landscape-nav" aria-label="Explore the painting">
-        <p>Wander somewhere</p><div class="landscape-choices">
-          <a href="tinai/index.html?seed=panai&amp;center=-21165" data-scene="madurai" aria-current="true">Madurai</a>
-          <a href="tinai/index.html?seed=panai&amp;center=-5800" data-scene="kurinji">Mountains</a>
-          <a href="tinai/index.html?seed=panai&amp;center=8600" data-scene="mullai">Forest</a>
-          <a href="tinai/index.html?seed=panai&amp;center=17600" data-scene="marutham">Farmland</a>
-          <a href="tinai/index.html?seed=panai&amp;center=600" data-scene="neithal">Coast</a>
-          <a href="tinai/index.html?seed=panai&amp;center=2400" data-scene="paalai">Drylands</a>
-        </div><button class="new-world" id="new-world" type="button" hidden>New world <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
-      </div>
-      <p class="sr-only" id="painting-status" role="status" aria-live="polite"></p>
-    </section>
-
-    <section class="art-story light-section" id="aintinai" aria-labelledby="art-heading">
-      <div class="wrap story-intro"><h2 id="art-heading"><span lang="ta">ஐந்திணை</span><span>Aintinai</span></h2><div class="story-copy"><p class="statement">A landscape is also<br>a way of feeling.</p><p>In classical Tamil Sangam poetry, the five landscapes connect the natural world with our inner lives. Mountains speak of union. Forests, of waiting. The coast, of longing.</p><p>I made Aintinai to bring those worlds to life, drawing on the colours, dark outlines, and ornamental borders of Nayak temple murals. Its paths eventually lead to Madurai, where I’m from.</p><a class="text-link" href="tinai/index.html?seed=panai&amp;center=-21165">Explore the full painting <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div></div>
-      <div class="landscape-gallery wrap" aria-label="The five landscapes of Sangam poetry">
-        <a class="landscape-piece" href="tinai/index.html?seed=panai&amp;x=-6400"><img src="tinai/screenshots/kurinji.jpg" width="1200" height="800" loading="lazy" alt="Kurinji: layered hills and mountain life under a night sky."><div><span lang="ta">குறிஞ்சி</span><h3>Kurinji</h3><p>Mountains &amp; union</p></div></a>
-        <a class="landscape-piece" href="tinai/index.html?seed=panai&amp;x=8000"><img src="tinai/screenshots/mullai.jpg" width="1200" height="800" loading="lazy" alt="Mullai: green groves, pasture, and village life."><div><span lang="ta">முல்லை</span><h3>Mullai</h3><p>Forest &amp; waiting</p></div></a>
-        <a class="landscape-piece" href="tinai/index.html?seed=panai&amp;x=17000"><img src="tinai/screenshots/marutham.jpg" width="1200" height="800" loading="lazy" alt="Marutham: cultivated fields, rivers, and Tamil temple architecture."><div><span lang="ta">மருதம்</span><h3>Marutham</h3><p>Farmland &amp; domestic life</p></div></a>
-        <a class="landscape-piece" href="tinai/index.html?seed=panai&amp;x=0"><img src="tinai/screenshots/neithal.jpg" width="1200" height="800" loading="lazy" alt="Neithal: coastal water, fishing boats, and palm groves."><div><span lang="ta">நெய்தல்</span><h3>Neithal</h3><p>Coast &amp; longing</p></div></a>
-        <a class="landscape-piece" href="tinai/index.html?seed=panai&amp;x=1800"><img src="tinai/screenshots/paalai.jpg" width="1200" height="800" loading="lazy" alt="Paalai: dry earth, sparse vegetation, and travellers."><div><span lang="ta">பாலை</span><h3>Paalai</h3><p>Drylands &amp; separation</p></div></a>
-      </div>
-      <div class="wrap making"><p>Drawn with code.<br>Rooted in a place.</p><div><p>Every tree, shrine, animal, and person comes from hand-authored drawing code. Seeded randomness gives the rules a different expression in every world. No image-generation model; just JavaScript, SVG, and a world that unfolds as you explore.</p><div class="inline-links"><a href="tinai/gallery.html">See every subject</a><a href="tinai/screenshots/faces.jpg">Meet the people</a></div></div></div>
-    </section>
-
-    <section class="kolam-section" id="kolam" aria-labelledby="kolam-heading" hidden>
-      <div class="wrap kolam-layout">
-        <div class="kolam-copy">
-          <h2 id="kolam-heading">A little kolam.<br><em>Made by you.</em></h2>
-          <p class="statement">Dots become curves.<br>Curves become possibilities.</p>
-          <p>A small playground inspired by kolam. Turn a tile and watch the threads find a new path. There is no right answer, just your next pattern.</p>
-
+      <section class="story-companion" id="story-companion" aria-label="A late arrival, a story in six scenes" hidden>
+        <svg class="story-vignette" id="story-vignette" viewBox="0 0 360 112" fill="none" aria-hidden="true">
+          <path class="vignette-ground" d="M28 96H332"/>
+          <g class="vignette-lamp" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M38 69Q62 84 88 69Q84 90 63 90Q45 90 38 69Z"/>
+            <path d="M38 69Q61 61 88 69M58 90V95M69 90V95M51 96H77"/>
+            <path d="M64 68Q68 61 66 55"/>
+            <g id="story-flame"><path d="M65 58C45 50 69 34 63 22C83 40 82 52 65 58Z" fill="currentColor" stroke="none" opacity=".78"/><path d="M65 57Q60 47 68 40Q73 51 65 57Z" fill="#e8e3d8" stroke="none"/></g>
+          </g>
+          <g id="story-door" stroke="currentColor" stroke-width="1.25" stroke-linecap="round">
+            <path d="M254 95V37Q274 12 294 37V95M249 96H300"/>
+            <path id="story-door-leaf" d="M259 94V39L288 31V90Z"/>
+          </g>
+          <g id="story-footsteps" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+            <path d="M241 83Q245 79 250 82M235 92Q239 88 244 91"/>
+            <path d="M216 82Q220 78 225 81M210 91Q214 87 219 90"/>
+            <path d="M191 83Q195 79 200 82M185 92Q189 88 194 91"/>
+          </g>
+          <g id="story-rain" stroke="#9aa9aa" stroke-width="1" stroke-linecap="round"></g>
+          <g id="story-flower">
+            <path d="M177 96Q187 85 180 67M179 86Q164 79 163 86Q169 93 179 90M183 80Q197 72 197 79Q194 85 182 85" stroke="#9eab89" stroke-width="1.3"/>
+            <g id="story-petals" fill="#e8e3d8"></g>
+            <circle cx="180" cy="64" r="2.5" fill="#dfc397"/>
+          </g>
+        </svg>
+        <div class="story-copy" aria-live="polite" aria-atomic="true">
+          <h2 id="story-chapter">Waiting</h2>
+          <p id="story-caption">Dusk settles. She lights a lamp for someone.</p>
         </div>
-        <div class="kolam-work">
-          <div class="kolam-board" id="kolam-board" data-palette="terracotta">
-            <svg class="kolam-drawing" id="kolam-drawing" viewBox="-44 -44 472 472" aria-hidden="true"></svg>
-            <div class="kolam-grid" id="kolam-grid" role="grid" aria-label="Turn tiles to change the kolam" aria-describedby="kolam-help"></div>
-          </div>
-          <div class="kolam-caption"><p id="kolam-help">Tap a tile to turn it. Arrow keys to explore.</p><span lang="ta">கோலம்</span></div>
-          <p class="sr-only" role="status" id="kolam-status" aria-live="polite" aria-atomic="true"></p>
-        </div>
-        <div class="kolam-controls">
-          <div class="kolam-palette" role="group" aria-label="Pattern colours">
-            <button type="button" class="colour-choice" data-palette="terracotta" aria-pressed="true"><span class="colour-sample sample-terracotta" aria-hidden="true"></span>Terracotta</button>
-            <button type="button" class="colour-choice" data-palette="indigo" aria-pressed="false"><span class="colour-sample sample-indigo" aria-hidden="true"></span>Indigo</button>
-            <button type="button" class="colour-choice" data-palette="leaf" aria-pressed="false"><span class="colour-sample sample-leaf" aria-hidden="true"></span>Leaf</button>
-          </div>
-          <label class="symmetry-control"><input type="checkbox" id="kolam-symmetry" checked> Four-way symmetry</label>
-          <div class="kolam-actions"><button type="button" class="button button-light" id="kolam-shuffle">Surprise me <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3l10 10h3M16 13l4 4-4 4M4 17h3l3-3m4-4 3-3h3m-4-4 4 4-4 4"/></svg></button><button type="button" class="kolam-undo" id="kolam-undo" disabled>Undo</button></div>
-          <a class="text-link kolam-save" id="kolam-save" download="my-kolam.svg">Keep this pattern <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg></a>
-        </div>
+      </section>
       </div>
-    </section>
-
-    <section class="about-section wrap" id="about" aria-labelledby="about-heading">
-      <figure class="portrait"><video id="portrait-video" src="images/SacchinSundar.mp4" poster="images/portrait-poster.jpg" muted loop playsinline preload="metadata" aria-label="Portrait of Sacchin Sundar"></video><figcaption>Sacchin Sundar<button type="button" class="text-button" id="portrait-toggle" hidden>Play portrait</button></figcaption></figure>
-      <div class="about-copy"><h2 id="about-heading">A little about me</h2><p class="statement">I build learning systems that connect perception, prediction, and action on physical robots.</p><p>I’m a Member of Technical Staff at a stealth company, working on world action models and industrial robot manipulation. My work spans world models, robot foundation models, multimodal learning, and 3D perception, with a focus on reusable manipulation skills, online policy refinement, and reliable real-world deployment.</p><p>I completed my master’s at the University of Michigan in May 2026, where I worked with <a href="https://robotics.umich.edu/people/faculty/katie-skinner/">Prof. Katie Skinner</a> in the <a href="https://fieldrobotics.engin.umich.edu/">Field Robotics Group</a> on underwater perception and SLAM.</p><p>Outside robotics, I make generative art rooted in Tamil landscapes and the streets of Madurai. I also write on <a href="https://substack.com/@latentgaussian">Latent Gaussian</a>.</p><div class="affiliations"><img src="images/FRoG.jpg" width="50" height="50" alt="Field Robotics Group" loading="lazy"><img src="images/umich_robo.png" width="153" height="40" alt="University of Michigan Robotics" loading="lazy"></div></div>
-    </section>
-
-    <section class="research-section light-section" id="work" aria-labelledby="research-heading">
-      <div class="wrap"><div class="section-intro"><h2 id="research-heading">Selected research</h2><p>Learning to act in the world.<br>Robot learning and 3D perception.</p></div>
-      <article class="publication">
-      <div class="publication-name"><h3>SCOUT</h3><p>Submitted to ICLR 2027</p></div>
-      <div class="publication-body"><p class="publication-title">Critic-Guided Schrödinger Transport for Online VLA Refinement</p>
-        <p class="authors"><b>Sacchin Sundar<sup>1*</sup></b>, Huaidian Hou<sup>1*</sup>, Yaoru Liu<sup>2</sup>, Dong Sun<sup>2</sup>, Siyuan Ji<sup>2</sup>, Junshan Zhang<sup>1,3</sup> <em>(*equal contribution)</em></p>
-        <details><summary>Read abstract <svg class="plus" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path class="vertical" d="M12 5v14"/></svg></summary><p>Critic-guided Schrödinger bridge refinement adapts frozen vision-language-action (VLA) policies using sparse rewards. A lightweight two-step actor removes candidate search and critic evaluation from inference. Evaluated on LIBERO, LIBERO-PRO, and bimanual robot hardware, with 92.3% mean LIBERO success compared with a 53.1% base policy, and stacking time reduced from 26.1 to 13.3 seconds.</p></details>
-        <div class="publication-links"><span class="publication-note">Paper &amp; project page coming soon</span></div>
-      </div>
-    </article><article class="publication">
-      <div class="publication-name"><h3>SurfSLAM</h3><p>Accepted to IEEE Transactions on Field Robotics</p></div>
-      <div class="publication-body"><p class="publication-title">Sim-to-Real Underwater Stereo Reconstruction For Real-Time SLAM</p>
-        <p class="authors">Onur Bagoren*, Seth Isaacson*, <b>Sacchin Sundar</b>, Yung-Ching Sun, Anja Sheppard, Haoyu Ma, Abrar Shariff, Ram Vasudevan, Katherine A. Skinner <em>(*equal contribution)</em></p>
-        <details><summary>Read abstract <svg class="plus" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path class="vertical" d="M12 5v14"/></svg></summary><p>SurfSLAM is a real-time underwater SLAM framework that combines learned stereo depth with acoustic-inertial odometry for localization and dense 3D reconstruction. Its sim-to-real training pipeline uses physics-based underwater image augmentation and self-supervised fine-tuning to adapt stereo networks to challenging underwater conditions. Evaluated on real-world shipwreck surveys, the framework improves stereo depth estimation, trajectory estimation, and reconstruction of complex underwater scenes.</p></details>
-        <div class="publication-links"><a href="https://arxiv.org/abs/2601.10814">Read the paper</a><a href="https://umfieldrobotics.github.io/SurfSLAM/">Project website</a></div>
-      </div>
-    </article>
-      <a class="text-link research-scholar" href="https://scholar.google.com/citations?user=UW1Hsd8AAAAJ&amp;hl=en">Find me on Google Scholar <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
-    </section>
-
-    <section class="accidents-section wrap" aria-labelledby="accidents-heading">
-      <div class="accidents-copy"><h2 id="accidents-heading">Happy accidents</h2><p class="statement">Sometimes, the wrong result<br>is worth keeping.</p><p>My research has often produced weird art as an unintended byproduct. Frustrating in the lab; interesting enough to find a home here.</p><p class="small-copy">A collection of six experiments.</p><div class="gallery-controls"><button id="previous-art" class="icon-button" type="button" aria-label="Previous artwork"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><span id="slide-counter" aria-live="polite" aria-atomic="true">1 / 6</span><button id="next-art" class="icon-button" type="button" aria-label="Next artwork"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div></div>
-      <figure class="accidents-art"><img id="siren-art" src="siren_art/siren_1.png" width="800" height="800" alt="Experimental SIREN artwork 1 of 6: colourful abstract neural patterns." loading="lazy"><figcaption>From the lab, with a little serendipity.</figcaption></figure>
-    </section>
-    <section class="writing-strip light-section" aria-labelledby="writing-heading"><div class="wrap"><h2 id="writing-heading">A thought, now and then.</h2><p>I write at Latent Gaussian.</p><a class="text-link" href="https://substack.com/@latentgaussian">Read on Substack <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></div></section>
-  </main>
-  <footer class="site-footer" id="contact">
-    <div class="wrap footer-top"><h2>Let’s stay curious.</h2><div><p>Robotics, art, or a good conversation.</p><a class="button button-light" href="mailto:sacchin@umich.edu">Say hello <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div></div>
-    <div class="wrap footer-bottom"><a class="signature" href="index.html">Sacchin Sundar</a><div class="social-links"><a href="https://scholar.google.com/citations?user=UW1Hsd8AAAAJ&amp;hl=en">Scholar</a><a href="https://github.com/sacchinbhg">GitHub</a><a href="https://www.linkedin.com/in/sacchin-ganesh-sundar/">LinkedIn</a><a href="https://substack.com/@latentgaussian">Substack</a></div></div>
-    <div class="wrap colophon"><p>A little of Madurai, wherever I am.</p><p>Aintinai builds on <a href="https://github.com/LingDong-/shan-shui-inf">{Shan, Shui}*</a> by Lingdong Huang. <a href="https://github.com/sacchinbhg/sacchinbhg.github.io">Website source</a>. Earlier site based on <a href="https://github.com/jonbarron/jonbarron_website">Jon Barron’s template</a>.</p></div>
-  </footer>
+    </main>
+    <footer class="landing-footer">
+      <p>A late arrival <span aria-hidden="true">·</span> Bharatanatyam in ASCII</p>
+    </footer>
+    <p class="sr-only" id="scene-status" role="status" aria-live="polite"></p>
+    <p class="sr-only" id="gaze-status" role="status" aria-live="polite"></p>
+  </div>
 </body>
 </html>

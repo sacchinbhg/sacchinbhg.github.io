@@ -78,14 +78,17 @@
   @media (prefers-reduced-motion: reduce) { .drift, .rain, .flap, .fly, .flyback, .flow, .flutter, .bunting-flutter, .smoke, .sway, .bob, .mill, .stroll, .strollback, .roll, .rollback, .rise { animation: none; } }
 </style>
 <link rel="stylesheet" href="../fonts/fonts.css">
-<link rel="stylesheet" href="viewer.css">
+<link rel="stylesheet" href="viewer.css?v=2">
 </head>
 <body>
   <div id="PLASTER"></div>
   <div id="PANEL">
-    <a class="back-home" href="../index.html">Back to Sacchin’s world</a>
+    <a class="back-home" href="../sangam.html">Poems &amp; artwork</a>
     <h1 lang="ta">ஐந்திணை</h1>
     <div class="sub">aintinai · the five landscapes</div>
+    <button id="VIEWER_MOTION" type="button" aria-pressed="false" onclick="setMotionPaused(!PAUSED)">Pause motion</button>
+    <details class="viewer-options">
+    <summary>Explore options</summary>
     <div class="row">
       <input aria-label="World seed" type="text" id="INP_SEED" title="seed">
       <button onclick="reloadWSeed(document.getElementById('INP_SEED').value)">generate</button>
@@ -101,8 +104,8 @@
     <div class="row">
       <button onclick="download('aintinai-' + SEED + '.svg', document.getElementById('BG').innerHTML)">download .svg</button>
     </div>
-    <button id="VIEWER_MOTION" type="button" aria-pressed="false" onclick="setMotionPaused(!PAUSED)">Pause motion</button>
     <div id="TINAI"></div>
+    </details>
   </div>
   <button type="button" aria-label="Pan painting left" id="L" class="edge" onclick="xcroll(-step())">&#x3008;</button>
   <button type="button" aria-label="Pan painting right" id="R" class="edge" onclick="xcroll(step())">&#x3009;</button>

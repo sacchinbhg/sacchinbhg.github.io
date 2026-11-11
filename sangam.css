@@ -1,0 +1,48 @@
+.poetry-shell { width: min(100% - 80px, 1120px); margin-inline: auto; }
+.poetry-nav, .poetry-footer { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-block: 24px; font-size: 14px; }
+.poetry-nav a, .poetry-footer a { padding-block: 10px; text-decoration: none; }
+.poetry-nav > a:first-child { font: 500 26px/1.2 var(--serif); letter-spacing: -.02em; }
+.poetry-intro { margin-block: 64px 40px; }
+.poetry-intro h1 { font-size: clamp(38px, 5vw, 60px); }
+.poetry-intro p { max-width: 50ch; margin-top: 20px; color: var(--muted); }
+.painting-preview > a { display: block; }
+.painting-preview img { width: 100%; height: auto; }
+.painting-preview figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 16px 32px; padding-top: 16px; font-size: 14px; }
+.painting-preview [lang="ta"] { font-family: 'Noto Serif Tamil', serif; font-size: 17px; }
+.painting-name { color: var(--muted); margin-left: 12px; }
+.painting-preview figcaption > a { white-space: nowrap; padding-block: 8px; }
+.poetry-collection { margin-top: 96px; }
+.collection-intro { max-width: 64ch; }
+.collection-intro h2 { margin: 0; font: 500 36px/1.15 var(--serif); letter-spacing: -.025em; text-wrap: balance; }
+.collection-intro p { margin-top: 16px; color: var(--muted); }
+.poem { padding-block: 56px; border-bottom: 1px solid #34342e; scroll-margin-top: 32px; }
+.poem h3 { margin: 0; font: 500 30px/1.2 var(--serif); letter-spacing: -.02em; text-wrap: balance; }
+.poem-credit { margin-top: 8px; color: var(--muted); font-size: 13px; }
+.poem-pair { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 40px; margin-top: 28px; }
+.poem-language h4 { margin: 0 0 16px; color: var(--muted); font: 400 12px/1.5 var(--sans); }
+.poem-language h4[lang="ta"] { font-family: 'Noto Serif Tamil', serif; }
+.tamil-poem { font: 400 16px/2.15 'Noto Serif Tamil', serif; overflow-wrap: anywhere; }
+.english-poem { font: 400 23px/1.6 var(--serif); }
+.poetry-sources { max-width: 80ch; margin-block: 40px 64px; font-size: 13px; color: var(--muted); }
+.poetry-sources p + p { margin-top: 16px; }
+.poetry-footer { padding-block: 20px 32px; }
+@media (max-width: 900px) {
+  .poem-pair { grid-template-columns: 1fr; gap: 28px; }
+}
+@media (max-width: 700px) {
+  .poetry-shell { width: calc(100% - 40px); }
+  .poetry-nav { padding-block: 20px; }
+  .poetry-nav > a:first-child { font-size: 23px; }
+  .poetry-intro { margin-block: 40px 28px; }
+  .poetry-intro p, .collection-intro p { font-size: 15px; }
+  .painting-preview figcaption { flex-direction: column; gap: 4px; font-size: 13px; }
+  .painting-name { display: block; margin: 8px 0 0; }
+  .poetry-collection { margin-top: 64px; }
+  .collection-intro h2 { font-size: 32px; }
+  .poem { padding-block: 40px; }
+  .poem h3 { font-size: 28px; }
+  .tamil-poem { font-size: 15px; }
+  .english-poem { font-size: 22px; }
+  .poetry-sources { margin-block: 32px 40px; }
+  .poetry-footer { font-size: 13px; }
+}

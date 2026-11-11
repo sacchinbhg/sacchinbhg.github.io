@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#231d18">
+  <meta name="author" content="Sacchin Sundar">
+  <link rel="icon" href="images/favicon/favicon.ico">
+  <link rel="preload" href="fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts/fonts.css">
+  <link rel="stylesheet" href="mural.css?v=organized-1">
+  <script src="site.js?v=organized-1" defer></script>
+  <title>Studio — Sacchin Sundar</title>
+  <meta name="description" content="A small studio for expressive ASCII eyes, an imagined Madurai courtyard, and generative experiments.">
+  <meta property="og:title" content="Studio — Sacchin Sundar">
+  <meta property="og:description" content="Studies in movement, place, and happy accidents. Rooted in Madurai.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sacchinbhg.github.io/studio.html">
+  <meta property="og:image" content="https://sacchinbhg.github.io/images/aintinai-madurai.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="module" src="studio.mjs?v=1"></script>
+  <script type="module" src="bharatanatyam-eyes.mjs?v=6"></script>
+  <script type="module" src="courtyard.mjs?v=2"></script>
+</head>
+<body class="studio-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap">
+    <a class="hello" href="index.html" aria-label="Sacchin Sundar, home"><span lang="ta">வணக்கம்</span><span>Hello, I’m Sacchin.</span></a>
+    <nav aria-label="Main navigation"><a href="index.html">Home</a><a href="studio.html" aria-current="page">Studio</a><a href="about.html">About</a><a href="https://scholar.google.com/citations?user=UW1Hsd8AAAAJ&amp;hl=en">Google Scholar</a><a href="mailto:sacchin@umich.edu">Say hello</a></nav>
+  </header>
+  <main id="main">
+    <div class="studio-intro wrap"><h1>A small studio.</h1><p>Studies in movement, place, and happy accidents. <br>Choose something to spend a moment with.</p></div>
+    <nav class="studio-picker wrap" aria-label="Choose a study">
+      <a href="#ascii-study" id="study-eyes" data-study="ascii-study">The eyes</a>
+      <a href="#courtyard" id="study-courtyard" data-study="courtyard">The courtyard</a>
+      <a href="#accidents" id="study-accidents" data-study="accidents">Happy accidents</a>
+    </nav>
+    <div class="studio-stage">
+    <section class="ascii-section studio-panel" id="ascii-study" aria-labelledby="ascii-heading">
+      <span id="kolam" aria-hidden="true"></span>
+      <div class="wrap ascii-layout">
+        <div class="ascii-copy">
+          <h2 id="ascii-heading">Without a word.</h2>
+          <div class="ascii-context"><p id="gaze-help">An eye study, inspired by Bharatanatyam.</p><p class="eye-scene">Someone has kept her waiting.</p></div>
+        </div>
+        <figure class="ascii-figure">
+          <div class="ascii-fallback" id="ascii-fallback"><img src="images/eyes-poster.png" width="1070" height="428" alt="Kohl-framed ASCII eyes, a raised brow, a red bindi, and a small gold pendant."><p>Enable JavaScript to see the performance.</p></div>
+          <canvas id="ascii-portrait" width="1100" height="440" role="img" aria-label="Expressive kohl-framed ASCII eyes with arched brows, a red bindi, a small gold forehead pendant, and a beauty mark. She searches for a late arrival, recognises them, challenges their excuse, and finally softens into a smile." aria-describedby="gaze-help" hidden></canvas>
+        </figure>
+        <div class="ascii-actions">
+          <div class="gaze-controls" id="gaze-controls" hidden>
+            <button type="button" class="gaze-button" id="gaze-replay">Replay</button>
+            <button type="button" class="gaze-button gaze-secondary" id="gaze-pause" aria-pressed="false">Pause</button>
+          </div>
+          <p class="ascii-credit"><a href="https://www.theraadhakalpamethod.com/natyashastra-abhinaya-darpana/videos/dishibedha">The language of gaze</a><span aria-hidden="true"> / </span><a href="https://github.com/stackedlol/ascii-sharks">ASCII inspiration</a></p>
+          <p class="sr-only" id="gaze-status" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+    <section class="courtyard-section studio-panel" id="courtyard" aria-labelledby="courtyard-heading" data-light="golden">
+      <div class="wrap">
+        <div class="courtyard-intro"><h2 id="courtyard-heading">A little of home.</h2><p>A courtyard imagined from Madurai.<br>Warm stone, still water, a moment to linger.</p></div>
+        <div class="courtyard-stage" id="courtyard-stage">
+          <figure class="courtyard-fallback" id="courtyard-fallback"><img src="images/courtyard-poster.png" width="1190" height="589" alt="An imagined Madurai courtyard with a colourful temple tower, palms and a stepped pool." loading="lazy"><figcaption id="courtyard-fallback-text">Turn the courtyard and change the light with JavaScript enabled.</figcaption></figure>
+          <canvas id="courtyard-canvas" role="img" aria-label="A three-dimensional miniature courtyard: a colourful tiered temple tower behind a stepped green pool, palms, clay lamps, and floating pink flowers." aria-describedby="courtyard-help" tabindex="0" hidden></canvas>
+        </div>
+        <div class="courtyard-tools" id="courtyard-tools" hidden>
+          <div class="courtyard-tool-row"><p id="courtyard-help">Drag to turn. Tap the water to float a flower.<span class="sr-only"> You can also focus the view and use the left and right arrow keys, or use the buttons below.</span></p><div class="courtyard-light" role="group" aria-label="Courtyard light"><button type="button" data-courtyard-light="0" aria-pressed="false">Morning</button><button type="button" data-courtyard-light="1" aria-pressed="true">Golden hour</button><button type="button" data-courtyard-light="2" aria-pressed="false">Night</button></div></div>
+          <div class="courtyard-tool-row"><div class="courtyard-view" role="group" aria-label="Courtyard view"><button type="button" id="courtyard-left" aria-label="Turn courtyard left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg></button><button type="button" id="courtyard-right" aria-label="Turn courtyard right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><button type="button" id="courtyard-reset">Reset view</button><button type="button" id="courtyard-motion" aria-pressed="false">Pause motion</button></div><button type="button" id="courtyard-flower" class="courtyard-flower">Float a flower <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V10m0 5C4 15 3 8 4 4c5 0 8 4 8 11Zm0 0c8 0 9-7 8-11-5 0-8 4-8 11Z"/></svg></button></div>
+        </div>
+        <p id="courtyard-status" class="sr-only" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+    <section class="accidents-section wrap studio-panel" id="accidents" aria-labelledby="accidents-heading">
+      <div class="accidents-copy"><h2 id="accidents-heading">Happy accidents</h2><p class="statement">Sometimes, the wrong result<br>is worth keeping.</p><p>My research has often produced weird art as an unintended byproduct. Frustrating in the lab; interesting enough to find a home here.</p><p class="small-copy">A collection of six experiments.</p><div class="gallery-controls"><button id="previous-art" class="icon-button" type="button" aria-label="Previous artwork"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><span id="slide-counter" aria-live="polite" aria-atomic="true">1 / 6</span><button id="next-art" class="icon-button" type="button" aria-label="Next artwork"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div></div>
+      <figure class="accidents-art"><img id="siren-art" src="siren_art/siren_1.png" width="800" height="800" alt="Experimental SIREN artwork 1 of 6: colourful abstract neural patterns." loading="lazy"><figcaption>From the lab, with a little serendipity.</figcaption></figure>
+    </section>
+    </div>
+  </main>
+  <footer class="studio-footer wrap"><a href="index.html">Back to the main site</a><p>Aintinai builds on <a href="https://github.com/LingDong-/shan-shui-inf">{Shan, Shui}*</a> by Lingdong Huang.</p><a href="mailto:sacchin@umich.edu">Say hello</a></footer>
+</body>
+</html>
