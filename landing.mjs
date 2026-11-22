@@ -12,9 +12,11 @@ function redirectLegacy() {
 }
 window.addEventListener('hashchange', redirectLegacy);
 if (!redirectLegacy()) {
-  // The homepage always opens with the approved eye choreography.
-  import('./bharatanatyam-eyes.mjs?v=6').catch(() => {
-    document.getElementById('scene-status').textContent =
-      'The eye animation could not load. A still of the artwork is shown.';
+  import('./ascii-world.mjs?v=4').then(module => module.mountWorld()).catch(error => {
+    console.error('The ASCII canvas could not start:', error);
+    document.getElementById('art-invitation').hidden = true;
+    document.getElementById('art-trigger').disabled = true;
+    document.getElementById('art-fallback').hidden = false;
+    document.getElementById('art-hint').textContent = 'Reload to try the artwork again.';
   });
 }

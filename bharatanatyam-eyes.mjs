@@ -1,5 +1,6 @@
 import { eyesAt, STORY_LENGTH, CHAPTERS, storyAt, storyTime } from './eye-story.mjs?v=3';
 import { createStoryStage } from './story-stage.mjs?v=3';
+import { createStoryReader } from './story-reader.mjs?v=1';
 
 const canvas = document.getElementById('ascii-portrait');
 if (canvas) {
@@ -17,8 +18,23 @@ if (canvas) {
   const params = new URLSearchParams(location.search);
   let atlas, tileW, tileH, time = storyTime(Number(params.get('t'))), last = null, lastPaint = 0, raf = 0;
   let paused = preference.matches || params.get('paused') === '1' || time === STORY_LENGTH, visible = false;
+  let readingAtPace = preference.matches || params.get('paused') === '1';
   let previousDrawing = '';
   const stage = createStoryStage();
+  const reader = createStoryReader({
+    onSeek(seconds) {
+      paused = readingAtPace;
+      seekTo(seconds);
+      const story = storyAt(seconds);
+      status.textContent = `${story.title}. ${story.caption} ${paused ? 'Reading at your pace.' : 'Playing from this line.'}`;
+    },
+    onReadingMode(value) {
+      readingAtPace = value;
+      paused = value;
+      seekTo(!paused && time === STORY_LENGTH ? 0 : time);
+      status.textContent = paused ? 'Story paused. Choose any line to explore its expression.' : 'The story is playing.';
+    }
+  });
 
   function path(d, fill, stroke, lineWidth = 2) {
     const shape = new Path2D(d);
@@ -108,6 +124,7 @@ if (canvas) {
   }
   function render(immediate = false) {
     stage?.update(time, immediate);
+    reader?.update(time);
     if (next) {
       const label = time >= 120 ? 'First scene' : 'Next scene';
       if (next.textContent !== label) next.textContent = label;
@@ -142,6 +159,7 @@ if (canvas) {
     previousDrawing = ''; buildAtlas(); render();
   }
   function syncControls() {
+    reader?.setReadingMode(readingAtPace);
     if (pause) { pause.textContent = paused ? 'Play' : 'Pause'; pause.setAttribute('aria-pressed', String(paused)); }
     if (next) next.textContent = time >= 120 ? 'First scene' : 'Next scene';
     stage?.setRunning(!paused && visible && !document.hidden);
@@ -174,6 +192,7 @@ if (canvas) {
     render(true); syncControls(); schedule();
   }
   replay?.addEventListener('click', () => {
+    readingAtPace = false;
     paused = false; seekTo(0);
     status.textContent = 'Playing A late arrival from the beginning.';
   });
@@ -184,13 +203,14 @@ if (canvas) {
   });
   pause?.addEventListener('click', () => {
     paused = !paused;
+    readingAtPace = paused;
     if (!paused && time === STORY_LENGTH) seekTo(0);
     if (paused) { cancelAnimationFrame(raf); raf = 0; last = null; } else schedule();
     syncControls();
     status.textContent = paused ? 'Paused.' : 'Playing.';
   });
   preference.addEventListener('change', () => {
-    if (preference.matches) paused = true;
+    if (preference.matches) { paused = true; readingAtPace = true; }
     // Keep the current scene and let the visitor explicitly restart motion.
     seekTo(time);
   });
