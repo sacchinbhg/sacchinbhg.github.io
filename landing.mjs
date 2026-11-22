@@ -12,11 +12,11 @@ function redirectLegacy() {
 }
 window.addEventListener('hashchange', redirectLegacy);
 if (!redirectLegacy()) {
-  import('./ascii-world.mjs?v=4').then(module => module.mountWorld()).catch(error => {
+  import('./aquarium/aquarium.mjs?v=1').catch(error => {
     console.error('The ASCII canvas could not start:', error);
-    document.getElementById('art-invitation').hidden = true;
-    document.getElementById('art-trigger').disabled = true;
-    document.getElementById('art-fallback').hidden = false;
-    document.getElementById('art-hint').textContent = 'Reload to try the artwork again.';
+    document.getElementById('loading').hidden = true;
+    document.getElementById('fallback').hidden = false;
+    document.querySelector('.study-controls').hidden = true;
+    document.getElementById('study-hint').textContent = 'Reload to try the artwork again.';
   });
 }

@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0c0f0e">
+  <meta name="theme-color" content="#050b0e">
+  <meta name="description" content="An original colourful ASCII aquarium by Sacchin Sundar. Fish, a sea turtle, drifting jellyfish, and a swaying reef fill the screen.">
   <title>Sacchin Sundar — Small infinities</title>
-  <meta name="description" content="A living aquarium drawn from type. Colourful fish, drifting jellyfish, and a swaying reef by Sacchin Sundar.">
   <meta property="og:title" content="Sacchin Sundar — Small infinities">
-  <meta property="og:description" content="An original colourful ASCII aquarium. Fish swim through depth, jellyfish drift, and the reef sways below.">
+  <meta property="og:description" content="An original colourful ASCII aquarium. Fish, a sea turtle, jellyfish, and a planted reef fill the screen.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://sacchinbhg.github.io/">
   <meta name="twitter:card" content="summary">
@@ -15,40 +15,35 @@
   <link rel="preload" href="fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="fonts/fonts.css">
-  <link rel="stylesheet" href="landing.css?v=3">
-  <link rel="stylesheet" href="ascii-world.css?v=3">
-  <script type="module" src="landing.mjs?v=11"></script>
+  <link rel="stylesheet" href="landing.css">
+  <link rel="stylesheet" href="aquarium/style.css?v=1">
+  <script type="module" src="landing.mjs?v=12"></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to the artwork</a>
-  <div class="world-shell">
-    <header class="world-header">
-      <h1><a href="index.html">Sacchin Sundar</a></h1>
-      <nav aria-label="Main navigation"><a href="sangam.html">Sangam poetry &amp; art</a><a href="about.html">About</a></nav>
-    </header>
-    <main class="world-main" id="main" tabindex="-1" aria-label="Small infinities, an original ASCII aquarium">
-      <button class="art-trigger" id="art-trigger" type="button" aria-label="Create an original ASCII aquarium" aria-describedby="art-hint" disabled>
-        <canvas id="ascii-world" aria-hidden="true"></canvas>
-        <span class="art-invitation" id="art-invitation">A little ocean, all its own.</span>
-      </button>
-      <div class="art-fallback" id="art-fallback" hidden><p>The canvas could not start. Please reload to try again.</p></div>
-      <noscript><style>.art-trigger { display: none; }</style><div class="art-fallback"><pre aria-label="A small fish drawn from text characters">
-                     o
-          .-''''-.  o
-   &gt;&lt;====(  .   o )
-          '-.__.-'
-       .       .      .
-      </pre><p>Enable JavaScript to bring this little ASCII aquarium to life.</p></div></noscript>
+  <a class="skip-link" href="#aquarium">Skip to the aquarium</a>
+  <div class="study-shell">
+    <main class="study-stage" id="aquarium" tabindex="0" aria-label="An original ASCII aquarium. Drag or use arrow keys to look around; Home resets the view." aria-describedby="study-hint">
+      <canvas id="study-canvas" aria-hidden="true"></canvas>
+      <p class="loading" id="loading">A little deeper.</p>
+      <div class="fallback" id="fallback" hidden><p>The aquarium could not start. Please reload or try another browser.</p><a href="index.html">Reload the aquarium</a></div>
+      <noscript><style>.loading,.study-controls { display: none; }</style><div class="fallback"><p>Enable JavaScript to explore the aquarium. You can still visit Sangam poetry &amp; art or About.</p></div></noscript>
     </main>
-    <footer class="world-footer">
-      <p class="world-title" id="world-title">Small infinities</p>
-      <p class="art-hint" id="art-hint">Click anywhere. Let it unfold.</p>
-      <div class="art-tools" id="art-tools" hidden>
-        <button type="button" id="art-pause">Pause</button>
-        <button type="button" id="art-clear">Clear</button>
+    <header class="study-profile" id="study-profile">
+      <h1>Sacchin Sundar</h1>
+      <nav aria-label="Main navigation">
+        <a href="sangam.html">Sangam poetry &amp; art</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+    <footer class="study-footer">
+      <p class="study-caption">Small infinities</p>
+      <p id="study-hint">Drag to look around</p>
+      <div class="study-controls" aria-label="Aquarium controls">
+        <button id="motion" type="button">Pause</button>
+        <button id="new-scene" type="button">Reshuffle</button>
       </div>
     </footer>
-    <p class="sr-only" id="art-status" role="status" aria-live="polite"></p>
+    <p class="sr-only" role="status" aria-live="polite" id="study-status"></p>
   </div>
 </body>
 </html>
