@@ -19,3 +19,4 @@ export const AQUARIUM_MODELS=Object.freeze([
   orientation:uprightHead.has(model.id)?[model.orientation[0],model.orientation[1],model.orientation[2]+Math.PI/2]:model.orientation
 })));
 export const AQUARIUM_BY_ID=new Map(AQUARIUM_MODELS.map(m=>[m.id,m]));
+export const INITIAL_SUBJECTS=['clownfish','green-sea-turtle','moon-jellyfish','angelfish','manta-ray','crab','tang','betta','seahorse','pufferfish','starfish','moorish-idol','lionfish','neon-tetra','hermit-crab','hammerhead-shark','discus','guppy','koi','shrimp','squid','lionhead-goldfish','lobster','longhorn-cowfish'];

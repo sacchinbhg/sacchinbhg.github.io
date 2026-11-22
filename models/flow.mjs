@@ -36,10 +36,10 @@ export class FlowWorld {
   chooseDestination(agent){
     const random=this.random;let best=-1,target=[0,0,0];
     for(let i=0;i<12;i++){
-      const angle=random()*TAU,r=.25+random()*.55,z=agent.kind==='bottom'?.1+random()*.35:(random()-.5)*1.8;
+      const z=agent.kind==='bottom'?.1+random()*.35:(random()-.5)*1.8;
       const perspective=3.8/(3.8-z*.8-agent.radius),limit=Math.max(.18,(.39/perspective-agent.radius*1.15)/.38);
       const candidate=[(random()-.5)*Math.min(limit,.90)*2,(random()-.5)*1.14-.10,z];
-      if(agent.kind==='bottom'){candidate[0]=(random()-.5)*1.65;candidate[1]=.78+random()*.07;}
+      if(agent.kind==='bottom'){candidate[0]=(random()-.5)*1.65;candidate[1]=(agent.floorY??.815)-.035+random()*.07;}
       if(agent.kind==='drift')candidate[1]=random()*.75-.60;
       const distance=Math.hypot(candidate[0]-agent.p[0],candidate[1]-agent.p[1],(candidate[2]-agent.p[2])*.7);
       // Prefer a real journey over a twitch around the current position.
@@ -50,10 +50,11 @@ export class FlowWorld {
   }
   step(dt){
     dt=Math.min(Math.max(dt,0),1/30);this.time+=dt;
-    const list=this.agents,t=this.time;
+    const list=this.visibleCount===undefined?this.agents:this.agents.slice(0,this.visibleCount),t=this.time;
+    const opening=Math.min(1,t/(this.openingDuration||.001)),pace=.18+.82*opening*opening*(3-2*opening);
     for(let i=0;i<list.length;i++){
       const a=list[i],[x,y,z]=a.p,p=a.phase;
-      if(t>a.nextTurn||Math.hypot(a.target[0]-x,a.target[1]-y,a.target[2]-z)<.20)this.chooseDestination(a);
+      if(t>a.nextTurn||(opening===1&&Math.hypot(a.target[0]-x,a.target[1]-y,a.target[2]-z)<.20))this.chooseDestination(a);
       const dx=a.target[0]-x,dy=a.target[1]-y,dz=a.target[2]-z,d=Math.hypot(dx,dy,dz)||1;
       const surge=.85+.15*Math.sin(t*.63+p);
       // Goals change independently; low-frequency noise bends their paths gently.
@@ -76,9 +77,9 @@ export class FlowWorld {
       const ceiling=-Math.min(limit,.90),floor=a.kind==='bottom'?.88:Math.min(limit,.58);
       const wallY=y<ceiling?(y-ceiling)*2.8:y>floor?(y-floor)*2.8:0;
       const zEdge=Math.max(0,Math.abs(z)-.95)*.8;
-      this.forces[i*3]=vx+sx-wallX;
-      this.forces[i*3+1]=vy+(a.kind==='bottom'?0:sy)-wallY;
-      this.forces[i*3+2]=vz+sz-Math.sign(z)*zEdge;
+      this.forces[i*3]=(vx+sx)*pace-wallX;
+      this.forces[i*3+1]=(vy+(a.kind==='bottom'?0:sy))*pace-wallY;
+      this.forces[i*3+2]=(vz+sz)*pace-Math.sign(z)*zEdge;
     }
     const blend=1-Math.exp(-dt*1.5);
     for(let i=0;i<list.length;i++){

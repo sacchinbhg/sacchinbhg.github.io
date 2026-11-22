@@ -1,8 +1,9 @@
 // Small infinities: an original ASCII aquarium, with independently swimming creatures.
-import {AQUARIUM_MODELS as MODELS,AQUARIUM_BY_ID as MODEL_BY_ID,HABITAT_MODELS} from './models/aquarium-catalog.mjs';
+import {AQUARIUM_MODELS as MODELS,AQUARIUM_BY_ID as MODEL_BY_ID,HABITAT_MODELS,INITIAL_SUBJECTS} from './models/aquarium-catalog.mjs';
 import {rng} from './models/geometry.mjs';
 import {FlowWorld} from './models/flow.mjs';
 import {AsciiRenderer} from './models/renderer.mjs';
+import {composeAquarium,createHabitat} from './models/composition.mjs';
 const clamp=(n,a=0,b=1)=>Math.min(b,Math.max(a,n));
 export {MODELS};
 
@@ -15,10 +16,9 @@ export function mountWorld(){
   let yaw=0,pitch=0,origin={x:.5,y:.5},clock=0,born=0,last=null,lastPaint=-Infinity,raf=0,accumulator=0,renderAverage=0;
   let paused=reduced.matches||params.get('paused')==='1',drag=null,suppressClick=false;
   const cache=new Map();
-  const first=['clownfish','green-sea-turtle','moon-jellyfish','angelfish','manta-ray','crab','tang','betta','seahorse','pufferfish','starfish','moorish-idol','lionfish','neon-tetra','hermit-crab','hammerhead-shark','discus','guppy','koi','shrimp','squid','lionhead-goldfish','lobster','longhorn-cowfish'];
   function pickModels(){
     if(selected)return Array.from({length:24},()=>MODEL_BY_ID.get(selected));
-    if(generation===0)return first.map(id=>MODEL_BY_ID.get(id));
+    if(generation===0)return INITIAL_SUBJECTS.map(id=>MODEL_BY_ID.get(id));
     const random=rng(seed),shuffle=items=>{for(let i=items.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[items[i],items[j]]=[items[j],items[i]];}return items;};
     const swimmers=shuffle(MODELS.filter(m=>m.kind!=='bottom')).slice(0,20),bottom=shuffle(MODELS.filter(m=>m.kind==='bottom')).slice(0,4);
     for(const index of [5,10,14,22])swimmers.splice(index,0,bottom.shift());
@@ -36,21 +36,13 @@ export function mountWorld(){
   function layout(){
     if(!world)return;
     const mobile=width<600,count=mobile?15:24;
+    world.visibleCount=count;
     objects=world.agents.slice(0,count).map((motion,i)=>{
       const model=chosen[i];
       return {model,geometry:geometry(model,i===0?1.05:motion.radius>.11?.8:.65),motion,phase:motion.phase,
         size:motion.radius*(mobile?1.04:1),x:.5,y:.5,delay:i*.014};
     });
-    const placements=mobile?[[.08,.22,4],[.27,.12,0],[.45,.11,6],[.65,.17,3],[.83,.24,5],[.93,.16,1]]:
-      [[.05,.23,4],[.17,.17,0],[.29,.13,2],[.43,.12,6],[.58,.14,7],[.70,.17,3],[.83,.20,1],[.96,.24,5]];
-    const scale=Math.min(width,height),random=rng(seed+17);
-    habitat=placements.map(([x,size,index],i)=>{
-      const model=HABITAT_MODELS[index],shape=geometry(model,.65),z=-.25+random()*.20,perspective=3.8/(3.8-z*.8);
-      let root=0;for(let p=1;p<shape.points.length;p+=10)root=Math.max(root,shape.points[p]);
-      const y=(.91-.5)/perspective/.38-size*root*scale/height/.38;
-      return {model,geometry:shape,size,anchored:true,x:.5,y:.5,phase:i,
-        motion:{p:[(x-.5)/perspective/.38,y,z],v:[0,0,0],kind:'habitat',heading:0,tumble:[0,0,0],hue:(.28+i*.13)%1,phase:i},delay:0};
-    });
+    habitat=createHabitat(HABITAT_MODELS,seed,width,height,geometry);
   }
   function draw(){
     const start=performance.now();
@@ -86,6 +78,7 @@ export function mountWorld(){
     const entropy=new Uint32Array(1);crypto.getRandomValues(entropy);seed=entropy[0];
     if(generation===0&&/^\d+$/.test(params.get('seed')||''))seed=Number(params.get('seed'))>>>0;
     chosen=pickModels();world=new FlowWorld(seed,24,chosen);generation++;layout();
+    composeAquarium(world,objects,habitat,width,height,clock);
     origin={x:clamp(x),y:clamp(y)};born=clock-(instant||reduced.matches||paused?3:0);
     canvas.dataset.generation=String(generation);canvas.dataset.seed=String(seed);
     $('art-invitation').hidden=true;
@@ -100,7 +93,7 @@ export function mountWorld(){
   function resize(){
     const rect=trigger.getBoundingClientRect();width=Math.max(1,rect.width);height=Math.max(1,rect.height);
     renderer.resize(width,height,devicePixelRatio||1,width<600?2.8:3.6);
-    if(world)layout();draw();
+    if(world){layout();if(world.time===0)composeAquarium(world,objects,habitat,width,height,clock);}draw();
   }
   trigger.addEventListener('pointerdown',event=>{
     if(event.button!==0)return;suppressClick=false;

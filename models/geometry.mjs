@@ -5,6 +5,10 @@ export const MAT = Object.freeze({IVORY:0,GOLD:1,GREEN:2,SLATE:3,NAVY:4,CORAL:5,
 export function rng(seed=1){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 export const mix=(a,b,t)=>a+(b-a)*t;
 export const lerp3=(a,b,t)=>a.map((n,i)=>mix(n,b[i],t));
+export function rotationMatrix(x,y,z){
+  const a=Math.cos(x),b=Math.sin(x),c=Math.cos(y),d=Math.sin(y),e=Math.cos(z),f=Math.sin(z);
+  return [c*e,b*d*e-a*f,a*d*e+b*f,c*f,b*d*f+a*e,a*d*f-b*e,-d,b*c,a*c];
+}
 const unit=v=>{const d=Math.hypot(...v)||1;return v.map(n=>n/d);};
 const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
 

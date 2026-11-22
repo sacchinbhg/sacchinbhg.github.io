@@ -1,4 +1,4 @@
-import { STRIDE } from './geometry.mjs';
+import { STRIDE, rotationMatrix as rotation } from './geometry.mjs';
 const clamp=(n,a=0,b=1)=>Math.min(b,Math.max(a,n));
 const ramp=' .,:;+=x*%#@';
 const colors=[[225,216,192],[208,181,116],[142,174,121],[137,159,170],[91,122,147],[219,160,143],[231,232,218],[47,54,52],[195,119,75],[145,196,200],[142,121,95],[202,181,148]];
@@ -17,10 +17,6 @@ for(let i=0;i<pigmentCount;i++)colors.push(colors[12+i].map(c=>Math.round(c*.70+
 const materialLight=[1.13,1.03,.94,.87,.76,1.02,1.22,.31,.85,1.06,.74,1.07];
 const materialHue=[.018,.032,-.012,-.018,-.035,.025,.01,0,.025,-.02,.012,.022];
 const tones=12;
-function rotation(x,y,z){
- const a=Math.cos(x),b=Math.sin(x),c=Math.cos(y),d=Math.sin(y),e=Math.cos(z),f=Math.sin(z);
- return [c*e,b*d*e-a*f,a*d*e+b*f,c*f,b*d*f+a*e,a*d*f-b*e,-d,b*c,a*c];
-}
 function multiply(a,b){const out=new Array(9);for(let r=0;r<3;r++)for(let c=0;c<3;c++)out[r*3+c]=a[r*3]*b[c]+a[r*3+1]*b[3+c]+a[r*3+2]*b[6+c];return out;}
 function jointsFor(joints,time){
  const transforms=[{m:[1,0,0,0,1,0,0,0,1],t:[0,0,0]}];
