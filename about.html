@@ -9,18 +9,25 @@
   <link rel="icon" href="images/favicon/favicon.ico">
   <link rel="preload" href="fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="fonts/fonts.css">
-  <link rel="stylesheet" href="landing.css?v=2">
+  <link rel="stylesheet" href="landing.css?v=3">
+  <script type="module" src="places.mjs"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="about-shell">
     <header class="about-nav"><a href="index.html">Home</a><nav aria-label="Main navigation"><a href="mailto:sacchin@umich.edu">Email</a></nav></header>
     <main class="about-content" id="main">
-      <img class="about-portrait" src="images/portrait-poster.jpg" width="250" height="330" alt="Sacchin Sundar in New York.">
+      <video class="about-portrait" src="images/SacchinSundar.mp4" poster="images/portrait-poster.jpg" width="250" height="330" autoplay muted loop playsinline aria-label="A portrait of Sacchin Sundar in New York that forms out of noise."></video>
       <div class="about-copy">
         <h1>A little about me.</h1>
-        <p>I’m Sacchin, a robotics researcher and generative artist from Madurai.</p>
-        <p>I build learning systems for physical robots. Currently, I’m a Member of Technical Staff at a stealth company. I completed my master’s at the University of Michigan, working on underwater perception and SLAM.</p>
+        <p>I’m Sacchin, a robotics researcher and generative artist.</p>
+        <p class="places"><span class="places__static">I’ve lived in Delhi, Chennai and Ann Arbor. Currently in the Bay Area.</span><span class="lead-cycle" aria-hidden="true"><span class="lead is-on" data-lead="lived">I’ve lived in</span><span class="lead" data-lead="now">Currently in</span></span><span class="place-cycle" aria-hidden="true">
+            <span class="place" data-place="delhi" data-lead="lived"><span class="place__name">Delhi</span><svg class="place__mark" viewBox="0 0 48 48"><path pathLength="1" d="M6 44H42M10 44V14H38V44M17 44V27A7 7 0 0 1 31 27V44M8 14H40M12 14V10H36V14M20 10Q24 5 28 10M24 7V4"/></svg><span class="place__native" lang="hi">दिल्ली</span></span>
+            <span class="place" data-place="chennai" data-lead="lived"><span class="place__name">Chennai</span><svg class="place__mark" viewBox="0 0 48 48"><path pathLength="1" d="M7 44H41M10 44L12 36H36L38 44M13 36L15 29H33L35 36M16 29L18 22H30L32 29M19 22L20 16H28L29 22M19 16Q24 10 29 16M21 12V9M24 11V7M27 12V9M22 44V39H26V44"/></svg><span class="place__native" lang="ta">சென்னை</span></span>
+            <span class="place" data-place="ann-arbor" data-lead="lived"><span class="place__name">Ann Arbor</span><svg class="place__mark" viewBox="0 0 48 48"><path pathLength="1" d="M24 3L39 12V30L24 39L9 30V12ZM24 21L24 3M24 21L9 30M24 21L39 30M24 39V44M15 44H33"/></svg><span class="place__native">A²</span></span>
+            <span class="place" data-place="bay-area" data-lead="now"><span class="place__name">the Bay Area</span><svg class="place__mark" viewBox="0 0 48 48"><path pathLength="1" d="M3 33H45M3 29Q10 24 14 9Q24 30 34 9Q38 24 45 29M14 42V7M34 42V7M12 13H16M12 21H16M32 13H36M32 21H36M19 20V33M24 23V33M29 20V33M3 42H45"/></svg></span>
+          </span></p>
+        <p>I build learning systems for physical robots. Currently, I’m a Member of Technical Staff at a stealth startup. I completed my master’s at the University of Michigan, working on underwater perception and SLAM.</p>
         <p>Away from robots, I make art rooted in Tamil landscapes, temple murals, and the places I call home.</p>
         <nav class="about-socials" aria-label="Find me elsewhere"><a id="scholar" href="https://scholar.google.com/citations?user=UW1Hsd8AAAAJ&amp;hl=en">Google Scholar</a><a href="https://x.com/sacchin_robots" rel="me">Twitter / X</a><a href="https://github.com/sacchinbhg">GitHub</a><a href="https://www.linkedin.com/in/sacchin-ganesh-sundar/">LinkedIn</a><a href="https://substack.com/@latentgaussian">Writing</a></nav>
       </div>
