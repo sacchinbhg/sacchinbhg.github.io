@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>S2I: robot assembly learned in a world model</title>
+<meta name="description" content="S2I is a model-based reinforcement learning method for robot assembly. A Franka arm in Isaac Sim learns peg, nut and gear tasks with a fraction of the simulator steps that PPO needs.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="S2I: robot assembly learned in a world model">
+<meta property="og:description" content="After 200,000 simulator steps, S2I inserts the peg in 85% of episodes. Stock PPO gets 17%.">
+<meta property="og:image" content="img/peg-hero.jpg">
+<meta name="theme-color" content="#f1ece1">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="s2i.css?v=3">
+<script type="module" src="s2i.js?v=3"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <a class="top__mark" href="#main" aria-label="S2I, top of page">
+    <svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#d4301f"/><rect x="19" y="1" width="16" height="16" fill="#1f4f9c"/><path d="M1 35 L17 19 L17 35Z" fill="#f0bd1c"/><rect x="19" y="19" width="16" height="16" fill="#141414"/></svg>
+    <span>S2I</span>
+  </a>
+  <nav aria-label="Sections">
+    <a href="#method">method</a>
+    <a href="#results">results</a>
+    <a href="#jitter">jitter</a>
+    <a href="#scale">scale</a>
+    <a class="top__home" href="../../index.html">sacchin sundar</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <section class="hero" aria-labelledby="title">
+    <div class="hero__word">
+      <h1 id="title"><span class="hero__s2i">S2I</span><span class="hero__sub">Robot assembly learned in a world model</span></h1>
+      <p class="hero__lead">S2I trains a Franka arm in NVIDIA Isaac Sim. The policy does most of its training inside a learned world model. It needs few real simulator steps.</p>
+    </div>
+
+    <div class="hero__stage">
+      <span class="shape shape--circle" aria-hidden="true"></span>
+      <span class="shape shape--square" aria-hidden="true"></span>
+      <figure class="frame hero__film" data-clip data-autoplay>
+        <video src="media/peg_s2i_fx_fd_s0__201600.mp4" poster="img/peg-hero.jpg" muted loop playsinline preload="metadata" aria-label="The trained arm inserts the yellow peg into its socket"></video>
+      </figure>
+      <span class="shape shape--bar" aria-hidden="true"></span>
+    </div>
+
+    <div class="hero__fact">
+      <p class="fact__num">85<span>%</span></p>
+      <p class="fact__text">Peg insertion success after 200,000 simulator steps. Stock PPO gets <b>17%</b> at the same budget.</p>
+    </div>
+  </section>
+
+  <section class="block" id="method" aria-labelledby="method-h">
+    <header class="block__head">
+      <p class="block__no">01</p>
+      <h2 id="method-h">The training loop</h2>
+      <p class="block__lede">S2I is a model-based reinforcement learning method. It builds on a SuperMimic-style world-model learner. The agent collects a small amount of real data and fits a dynamics model. The policy then trains mostly on imagined rollouts. S2I adds a coach that selects the start state of each rollout.</p>
+    </header>
+
+    <ol class="loop">
+      <li class="loop__step">
+        <svg class="glyph" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="36" fill="#1f4f9c"/></svg>
+        <h3><span>1</span> Real data</h3>
+        <p>The policy runs in Isaac Sim with exploration noise. Only these steps count in the step budget.</p>
+      </li>
+      <li class="loop__step">
+        <svg class="glyph" viewBox="0 0 80 80" aria-hidden="true"><rect x="6" y="6" width="68" height="68" fill="#f0bd1c"/></svg>
+        <h3><span>2</span> World model</h3>
+        <p>A learned dynamics model predicts the next state and the reward for each action. It trains on real data only.</p>
+      </li>
+      <li class="loop__step loop__step--key">
+        <svg class="glyph" viewBox="0 0 80 80" aria-hidden="true"><path d="M40 4 L76 74 H4Z" fill="#d4301f"/></svg>
+        <h3><span>3</span> Coach</h3>
+        <p>The coach divides the stored states into groups. For each group, it does a trial update and measures the gain in imagined return. It sends more rollouts to the groups with the largest gain.</p>
+      </li>
+      <li class="loop__step">
+        <svg class="glyph" viewBox="0 0 80 80" aria-hidden="true"><rect x="8" y="8" width="64" height="64" fill="none" stroke="#141414" stroke-width="8"/><circle cx="40" cy="40" r="14" fill="#141414"/></svg>
+        <h3><span>4</span> Imagined rollouts</h3>
+        <p>The actor and the critic train on 16-step rollouts in the world model. These rollouts cost zero simulator steps.</p>
+      </li>
+    </ol>
+    <p class="loop__back">The updated policy goes back to step 1 and collects new real data.</p>
+  </section>
+
+  <section class="block" id="results" aria-labelledby="results-h">
+    <header class="block__head">
+      <p class="block__no">02</p>
+      <h2 id="results-h">Three Factory tasks at the same step budget</h2>
+      <p class="block__lede">Each S2I value is the mean of 2 to 14 training runs. Each run is scored on 128 episodes with exploration noise off. PPO is one stock run for each task.</p>
+    </header>
+
+    <div class="tasks">
+      <article class="task" data-clip>
+        <figure class="frame task__film"><video src="media/peg_s2i_fx_fd_s0__105600.mp4" poster="img/peg.jpg" muted loop playsinline preload="none" aria-label="The trained arm inserts the peg"></video></figure>
+        <h3>Peg insertion <small>about 200,000 steps</small></h3>
+        <div class="bars" role="img" aria-label="Peg insertion: S2I 85 percent, PPO 17 percent">
+          <div class="bar bar--s2i bar--in" style="--v:85"><span>S2I</span><b>85%</b></div>
+          <div class="bar bar--ppo" style="--v:17"><span>PPO</span><b>17%</b></div>
+        </div>
+        <p class="task__note">PPO needs 409,600 steps to get 91%.</p>
+      </article>
+      <article class="task" data-clip>
+        <figure class="frame task__film"><video src="media/nut_s2ic_fx_fd_s1__86400.mp4" poster="img/nut.jpg" muted loop playsinline preload="none" aria-label="The trained arm threads the nut onto the bolt"></video></figure>
+        <h3>Nut threading <small>about 250,000 steps</small></h3>
+        <div class="bars" role="img" aria-label="Nut threading: S2I 96 to 98 percent, PPO 69 percent">
+          <div class="bar bar--s2i bar--in" style="--v:96;--hi:98"><span>S2I</span><b>96–98%</b></div>
+          <div class="bar bar--ppo" style="--v:69"><span>PPO</span><b>69%</b></div>
+        </div>
+        <p class="task__note">PPO needs 393,216 steps to get 93%.</p>
+      </article>
+      <article class="task" data-clip>
+        <figure class="frame task__film"><video src="media/gear_s2icr_fx_fd_s0__57600.mp4" poster="img/gear.jpg" muted loop playsinline preload="none" aria-label="The arm meshes the gear onto its shaft"></video></figure>
+        <h3>Gear meshing <small>about 300,000 steps</small></h3>
+        <div class="bars" role="img" aria-label="Gear meshing: S2I 74 to 84 percent, PPO 44 percent">
+          <div class="bar bar--s2i bar--in" style="--v:74;--hi:84"><span>S2I</span><b>74–84%</b></div>
+          <div class="bar bar--ppo" style="--v:44"><span>PPO</span><b>44%</b></div>
+        </div>
+        <p class="task__note">PPO needs 999,424 steps to get 87%.</p>
+      </article>
+    </div>
+    <p class="legend"><span><i class="sw sw--s2i"></i>S2I</span><span><i class="sw sw--range"></i>range over runs or coach designs</span><span><i class="sw sw--ppo"></i>stock PPO</span></p>
+  </section>
+
+  <section class="block block--yellow" id="jitter" aria-labelledby="jitter-h">
+    <header class="block__head">
+      <p class="block__no">03</p>
+      <h2 id="jitter-h">Execution jitter doubles success on the NIST gear board</h2>
+      <p class="block__lede">We add Gaussian noise (σ = 0.3) to the seven arm commands at run time. Training does not change. We wrote the test rules before the test, and we used start states that no earlier test used. A control with only the mean shift from clipping gave no gain. Thus the gain comes from the noise.</p>
+    </header>
+
+    <div class="jitter">
+      <figure class="frame jitter__film" data-clip>
+        <video src="media/nist_gear_mesh_medium_1_inhand.mp4" poster="img/nist.jpg" muted loop playsinline preload="none" aria-label="The NIST assembly board. The gripper holds the medium gear near its shaft. This is the in-hand start state."></video>
+      </figure>
+
+      <div class="jitter__data">
+        <h3 class="jitter__label">In-hand success. 8 new policies, 8,192 episodes.</h3>
+        <div class="bars bars--big" role="img" aria-label="In-hand success: 13.9 percent with no jitter, 27.9 percent with jitter">
+          <div class="bar bar--ppo" style="--v:13.9"><span>No jitter</span><b>13.9%</b></div>
+          <div class="bar bar--s2i" style="--v:27.9"><span>Jitter</span><b>27.9%</b></div>
+        </div>
+        <div class="axis" aria-hidden="true"><span>0</span><span>25</span><span>50</span><span>75</span><span>100%</span></div>
+
+        <div class="eight">
+          <div class="eight__sq" role="img" aria-label="8 of 8 policies improved"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <p><b>8 of 8</b> policies improved. Mean gain +13.9 points, 95% CI +6.8 to +21.0, p = 0.0024.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block block--ink" id="scale" aria-labelledby="scale-h">
+    <header class="block__head">
+      <p class="block__no">04</p>
+      <h2 id="scale-h">The work in numbers</h2>
+      <p class="block__lede">We built and tested five coach designs, six learner changes and five gripper designs. All values come from the logged runs.</p>
+    </header>
+    <dl class="scale">
+      <div><dt>training runs with logged results</dt><dd>112</dd></div>
+      <div><dt>simulator steps in those runs</dt><dd>26.5M</dd></div>
+      <div><dt>methods and variants built and tested</dt><dd>20</dd></div>
+      <div><dt>evaluation episodes in pre-registered tests</dt><dd>17,664</dd></div>
+    </dl>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>S2I. Robot assembly research by Sacchin Sundar. Simulation results, November 2026.</p>
+  <nav aria-label="Elsewhere"><a href="../../index.html">home</a><a href="../../about.html">about</a><a href="https://github.com/sacchinbhg">github</a></nav>
+</footer>
+</body>
+</html>
